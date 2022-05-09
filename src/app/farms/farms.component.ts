@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Farm } from './farm';
+import { FarmService } from './farm.service';
 
 @Component({
   selector: 'app-farms',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./farms.component.css']
 })
 export class FarmsComponent implements OnInit {
+  public farm: Farm[] = [];
 
-  constructor() { }
+  constructor(private farmService: FarmService){}
 
-  ngOnInit(): void {
+  ngOnInit() {
+      this.getFarms();
+  }
+
+  public getFarms(): void {
+    this.farmService.getFarms().subscribe(
+      (response: Farm[]) => {
+        this.farm = response;
+      }
+    );
   }
 
 }

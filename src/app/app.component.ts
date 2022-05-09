@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Farm } from './farm';
-import { FarmService } from './farm.service';
 import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
@@ -10,19 +8,10 @@ import { HttpErrorResponse } from "@angular/common/http";
 })
 
 export class AppComponent implements OnInit {
-  public farm: Farm[] = [];
-
-  constructor(private farmService: FarmService){}
+  
+  constructor(){}
 
   ngOnInit() {
-      this.getFarms();
   }
 
-  public getFarms(): void {
-    this.farmService.getFarms().subscribe(
-      (response: Farm[]) => {
-        this.farm = response;
-      }
-    );
-  }
 }
