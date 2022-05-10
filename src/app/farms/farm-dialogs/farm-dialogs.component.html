@@ -6,15 +6,19 @@
           <h5 class="modal-title" id="addFarmModalLabel">Adicionar nova fazenda</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-            <form #addForm="ngForm">
-                <input type="text" name="name" id="name"  placeholder="*Nome">
-            </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-light cancel-btn" data-bs-dismiss="modal">Cancelar</button>
-          <button type="button" class="btn btn-primary confirm-btn">Salvar</button>
-        </div>
+        <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+          <div class="modal-body">   
+            <input type="text" name="name" id="name" ngModel
+            placeholder="*Nome" required #name="ngModel">
+            <div>
+              <span class="help-block" style="padding: 3px;" *ngIf="!name.valid && name.touched">Por favor, insira um nome válido!</span>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light cancel-btn" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-primary confirm-btn">Salvar</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>

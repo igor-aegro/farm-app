@@ -20,9 +20,9 @@ export class FarmService {
     //     return this.http.post<Farm>(`${this.apiServerUrl}/api/v1/farms`, farm);    
     // }
 
-    public updateFarm(farm: Farm): Observable<Farm> {
-        return this.http.put<Farm>(`${this.apiServerUrl}/api/v1/farms/${farm.id}`, farm);    
-    }
+    // public updateFarm(farm: Farm): Observable<Farm> {
+    //     return this.http.put<Farm>(`${this.apiServerUrl}/api/v1/farms/${farm.id}`, farm);    
+    // }
 
     // public deleteFarm(farmId: string): Observable<void> {
     //     return this.http.delete<void>(`${this.apiServerUrl}/farm/delete/${farmId}`);   
