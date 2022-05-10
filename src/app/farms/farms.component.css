@@ -9,7 +9,7 @@ body{
     border: none;
     -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
     box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
-    margin: 0px;
+    margin: 5px;
 }
 .w-60 {
     width: 60px;
@@ -20,4 +20,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 a {
     color: #707070;
+}
+.standard-button {
+    margin: 5px;
+}
+.add-btn {
+    background-color: #00c65e;
+    border: none;
+    border-radius: 0px;
 }

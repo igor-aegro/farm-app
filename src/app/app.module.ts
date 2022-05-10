@@ -10,6 +10,8 @@ import { ProductionsComponent } from './productions/productions.component';
 import { ProductionListComponent } from './productions/production-list/production-list.component';
 import { FarmsComponent } from './farms/farms.component';
 import { FarmListComponent } from './farms/farm-list/farm-list.component';
+import { FormsModule } from '@angular/forms';
+import { FarmDialogsComponent } from './farms/farm-dialogs/farm-dialogs.component';
 
 @NgModule({
   declarations: [
@@ -20,11 +22,13 @@ import { FarmListComponent } from './farms/farm-list/farm-list.component';
     ProductionsComponent,
     ProductionListComponent,
     FarmsComponent,
-    FarmListComponent
+    FarmListComponent,
+    FarmDialogsComponent
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

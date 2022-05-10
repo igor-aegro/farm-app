@@ -1,0 +1,60 @@
+<!-- Add farm modal -->
+  <div class="modal fade" id="addFarmModal" tabindex="-1" aria-labelledby="addFarmModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addFarmModalLabel">Adicionar nova fazenda</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form #addForm="ngForm">
+                <input type="text" name="name" id="name"  placeholder="*Nome">
+            </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-light cancel-btn" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary confirm-btn">Salvar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Edit farm modal -->
+<div class="modal fade" id="editFarmModal" tabindex="-1" aria-labelledby="editFarmModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editFarmModalLabel">Editar nome da fazenda</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+          <form #editForm="ngForm">
+              <input type="text" name="name" id="name"  placeholder="*Novo nome da fazenda">
+          </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light cancel-btn" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn btn-primary confirm-btn">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete farm modal -->
+<div class="modal fade" id="deleteFarmModal" tabindex="-1" aria-labelledby="deleteFarmModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteFarmModalLabel">Apagar fazenda</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Isso irá apagar todos os talhões, produções e dados relacionados a essa fazenda. Tem certeza que quer concluir essa operação?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light cancel-btn" data-bs-dismiss="modal">Não</button>
+        <button type="button" class="btn btn-primary confirm-btn">Sim</button>
+      </div>
+    </div>
+  </div>
+</div>
