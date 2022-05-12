@@ -12,6 +12,7 @@ import { FarmsComponent } from './farms/farms.component';
 import { FarmListComponent } from './farms/farm-list/farm-list.component';
 import { FormsModule } from '@angular/forms';
 import { FarmDialogsComponent } from './farms/farm-dialogs/farm-dialogs.component';
+import { GlebeDialogsComponent } from './glebes/glebe-dialogs/glebe-dialogs.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { FarmDialogsComponent } from './farms/farm-dialogs/farm-dialogs.componen
     ProductionListComponent,
     FarmsComponent,
     FarmListComponent,
-    FarmDialogsComponent
+    FarmDialogsComponent,
+    GlebeDialogsComponent
   ],
   imports: [
     BrowserModule,

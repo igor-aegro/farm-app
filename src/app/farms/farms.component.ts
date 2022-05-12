@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Farm } from './farm';
 import { FarmService } from './farm.service';
@@ -21,6 +22,9 @@ export class FarmsComponent implements OnInit {
     this.farmService.getFarms().subscribe(
       (response: Farm[]) => {
         this.farm = response;
+      },
+      (error: HttpErrorResponse) =>{
+        alert(error.message);
       }
     );
   }

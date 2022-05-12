@@ -1,0 +1,76 @@
+<!-- Add Glebe modal -->
+<div class="modal fade" id="addGlebeModal" tabindex="-1" aria-labelledby="addGlebeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addGlebeModalLabel">Adicionar nova área da fazenda</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form>
+          <div class="modal-body">   
+            <input type="text" class="input-style" name="name" id="name" ngModel
+            placeholder="*Nome" required #name="ngModel">
+            <div>
+              <span class="help-block" style="margin: 3px;" *ngIf="!name.valid && name.touched">Por favor, insira um nome válido!</span>
+            </div>
+            <input type="text" class="input-style" name="area" id="area" ngModel
+            placeholder="*Tamanho(ha)" required #area="ngModel">
+            <div>
+              <span class="help-block" style="margin: 3px;" *ngIf="!name.valid && name.touched">Por favor, insira uma área válida!</span>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn cancel-btn" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn confirm-btn">Salvar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<!-- Edit Glebe modal -->
+<div class="modal fade" id="editGlebeModal" tabindex="-1" aria-labelledby="editGlebeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editGlebeModalLabel">Editar dados da área</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <input type="text" class="input-style" name="name" id="name" ngModel
+        placeholder="*Nome" required #name="ngModel">
+        <div>
+          <span class="help-block" style="margin: 3px;" *ngIf="!name.valid && name.touched">Por favor, insira um nome válido!</span>
+        </div>
+        <input type="text" class="input-style" name="area" id="area" ngModel
+        placeholder="*Tamanho(ha)" required #area="ngModel">
+        <div>
+          <span class="help-block" style="margin: 3px;" *ngIf="!name.valid && name.touched">Por favor, insira uma área válida!</span>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn cancel-btn" data-bs-dismiss="modal">Cancelar</button>
+        <button type="button" class="btn confirm-btn">Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Glebe modal -->
+<div class="modal fade" id="deleteGlebeModal" tabindex="-1" aria-labelledby="deleteGlebeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="deleteGlebeModalLabel">Apagar área da fazenda</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Isso irá apagar todos as produções e dados relacionados a essa área. Tem certeza que quer concluir essa operação?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn cancel-btn" data-bs-dismiss="modal">Não</button>
+        <button type="button" class="btn confirm-btn">Sim</button>
+      </div>
+    </div>
+  </div>
+</div>
