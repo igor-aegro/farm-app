@@ -5,7 +5,7 @@ import { Farm } from '../farm';
 @Component({
   selector: 'app-farm-dialogs',
   templateUrl: './farm-dialogs.component.html',
-  styleUrls: ['./farm-dialogs.component.css', '../../app.component.css']
+  styleUrls: ['./farm-dialogs.component.css']
 })
 export class FarmDialogsComponent implements OnInit {
 
