@@ -13,6 +13,7 @@ import { FarmListComponent } from './farms/farm-list/farm-list.component';
 import { FormsModule } from '@angular/forms';
 import { FarmDialogsComponent } from './farms/farm-dialogs/farm-dialogs.component';
 import { GlebeDialogsComponent } from './glebes/glebe-dialogs/glebe-dialogs.component';
+import { ProductionDialogsComponent } from './productions/production-dialogs/production-dialogs.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { GlebeDialogsComponent } from './glebes/glebe-dialogs/glebe-dialogs.comp
     FarmsComponent,
     FarmListComponent,
     FarmDialogsComponent,
-    GlebeDialogsComponent
+    GlebeDialogsComponent,
+    ProductionDialogsComponent
   ],
   imports: [
     BrowserModule,
