@@ -32,6 +32,9 @@ a {
     border: none;
     border-radius: 0px;
 }
+.confirm-btn:hover {
+    box-shadow: 2px 2px 2px #707070;
+}
 
 .cancel-btn {
     border: none;
