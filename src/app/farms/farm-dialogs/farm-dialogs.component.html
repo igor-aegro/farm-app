@@ -1,3 +1,43 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+  <div class="col-9">
+      <strong>Fazendas</strong>
+  </div>
+  <button type="button" class="btn confirm-btn" style="width: 20%" data-bs-toggle="modal" data-bs-target="#addFarmModal">
+      + Nova fazenda
+  </button>
+</nav>
+
+<hr>
+
+<ul class="list-group">
+<div *ngFor="let eachFarm of farms" class="container">
+  <li class="list-group-item">
+    <div class="col-xl-12">
+        <div class="row align-items-center d-flex">
+            <div class="col-2">
+                <i class="fa fa-home"></i>
+            </div>
+            <div class="col-8 mb-0">
+                <h5>Fazenda {{eachFarm?.name}}</h5>
+            </div>
+            <div class="col-2 btn-group btn-sm" role="group">
+                
+                <a href="#" class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="Edit"
+                data-bs-toggle="modal" data-bs-target="#editFarmModal"><i class="fa fa-pencil"></i> </a>
+                
+                <a href="#" class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="Delete" 
+                data-bs-toggle="modal" data-bs-target="#deleteFarmModal"><i class="fa fa-times"></i></a>
+                
+                <a href="#" class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="List"
+                data-bs-toggle="modal" data-bs-target="#listFarmModal"><i class="fa fa-arrow-right"></i> </a>
+            
+            </div>
+        </div>
+    </div>
+  </li>
+</div>
+</ul>
+
 <!-- Add farm modal -->
   <div class="modal fade" id="addFarmModal" tabindex="-1" aria-labelledby="addFarmModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -33,12 +73,13 @@
       </div>
       <div class="modal-body">
           <form #editForm="ngForm">
-              <input type="text" name="name" id="name"  placeholder="*Novo nome da fazenda">
+              <input type="text" ngModel="{{ editFarm?.name }}" name="name" id="name"  placeholder="*Novo nome da fazenda">
+              <!-- <input type="hidden" ngModel="{{ editFarm?.id }}" name="id" id="id"> -->
           </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn cancel-btn" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn confirm-btn">Salvar</button>
+        <button (click)="onUpdateFarm(editForm.value)" type="button" class="btn confirm-btn">Salvar</button>
       </div>
     </div>
   </div>

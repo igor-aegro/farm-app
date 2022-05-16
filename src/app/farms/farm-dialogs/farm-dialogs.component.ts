@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Farm } from '../farm';
 import { FarmService } from '../farm.service';
@@ -7,14 +7,15 @@ import { FarmService } from '../farm.service';
 @Component({
   selector: 'app-farm-dialogs',
   templateUrl: './farm-dialogs.component.html',
-  styleUrls: ['./farm-dialogs.component.css'],
+  styleUrls: ['./farm-dialogs.component.css']
 })
 export class FarmDialogsComponent implements OnInit {
-  farm: Farm[] = [];
+  public farms: Farm[] = [];
+  public editFarm!: Farm;
 
-  constructor(private farmService: FarmService) { }
+  constructor(private farmService: FarmService){}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.getFarms();
   }
 
@@ -25,7 +26,7 @@ export class FarmDialogsComponent implements OnInit {
   public getFarms(): void {
     this.farmService.getFarms().subscribe(
       (response: Farm[]) => {
-        this.farm = response;
+        this.farms = response;
       },
       (error: HttpErrorResponse) =>{
         alert(error.message);
@@ -41,6 +42,17 @@ export class FarmDialogsComponent implements OnInit {
         this.getFarms();
       }
     )
+  }
+
+  public onUpdateFarm(farm: Farm): void {
+    this.editFarm = farm;
+    console.log(farm.id);
+    this.farmService.updateFarm(farm).subscribe(
+      (response: Farm) => {
+        console.log(response);
+        this.getFarms();
+      }
+    );
   }
 
 }
