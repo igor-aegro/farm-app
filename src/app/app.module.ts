@@ -14,6 +14,13 @@ import { FormsModule } from '@angular/forms';
 import { FarmDialogsComponent } from './farms/farm-dialogs/farm-dialogs.component';
 import { GlebeDialogsComponent } from './glebes/glebe-dialogs/glebe-dialogs.component';
 import { ProductionDialogsComponent } from './productions/production-dialogs/production-dialogs.component';
+import { RouterModule, Routes } from '@angular/router';
+
+const appRoutes: Routes = [
+  { path: 'farms', component: FarmDialogsComponent },
+  { path: 'glebes', component: GlebeListComponent },
+  { path: 'productions', component: ProductionListComponent }, 
+];
 
 @NgModule({
   declarations: [
@@ -32,7 +39,8 @@ import { ProductionDialogsComponent } from './productions/production-dialogs/pro
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
