@@ -9,13 +9,13 @@ body{
     margin-top:20px;
     background: white;
 }
-.card {
+/* .card {
     border: none;
     -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
     box-shadow: 0 0px 0px 0 rgba(0,0,0,.05);
     margin: 0px;
     height: 70px;
-}
+} */
 h1, h2, h3, h4, h5, h6 {
     margin: 0 0 10px;
     font-weight: 600;

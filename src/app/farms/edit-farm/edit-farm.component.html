@@ -1,0 +1,15 @@
+
+<!-- Edit farm modal -->
+<div class="modal-header">
+  <h5 class="modal-title" id="editFarmModalLabel">Editar nome da fazenda</h5>
+  <button type="button" class="btn-close" (click)="closeModal()"></button>
+</div>
+<div class="modal-body">
+    <form #editForm="ngForm">
+        <input type="text" ngModel="{{ editFarm?.name }}" name="name" id="name"  placeholder="*Novo nome da fazenda">
+    </form>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn cancel-btn">Cancelar</button>
+  <button (click)="onUpdateFarm(editForm.value)" type="button" class="btn confirm-btn">Salvar</button>
+</div>
