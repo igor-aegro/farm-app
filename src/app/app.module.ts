@@ -19,6 +19,7 @@ import { RouterModule, Routes } from '@angular/router';
 const appRoutes: Routes = [
   { path: 'farms', component: FarmDialogsComponent },
   { path: 'glebes', component: GlebeListComponent },
+  { path: 'glebes/:id/:name', component: GlebesComponent },
   { path: 'productions', component: ProductionListComponent }, 
 ];
 

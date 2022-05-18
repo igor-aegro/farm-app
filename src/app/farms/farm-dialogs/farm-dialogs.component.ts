@@ -1,8 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Farm } from '../farm';
-import { FarmService } from '../farm.service';
+import { Farm } from 'src/app/models/farm.model';
+import { FarmService } from 'src/app/services/farm.service';
 
 @Component({
   selector: 'app-farm-dialogs',
