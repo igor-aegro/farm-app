@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
 import { Farm } from 'src/app/models/farm.model';
 import { FarmService } from 'src/app/services/farm.service';
 import { FarmListComponent } from '../farm-list/farm-list.component';
-import { FarmListService } from '../farm-list/farm-list.service';
 
 @Component({
   selector: 'app-add-farm',
@@ -16,17 +15,9 @@ export class AddFarmComponent implements OnInit {
   farms!:Farm[];
 
   constructor(private farmService: FarmService,
-    private farmListService: FarmListService,
     private router: Router) { }
 
   ngOnInit(): void {
-    this.farms = this.farmListService.getFarms();
-    this.farmListService.farmsChanged
-    .subscribe(
-      (farms:Farm[]) => {
-        this.farms = farms;
-      }
-    )
   }
 
   onSubmit(form: NgForm){
@@ -38,9 +29,13 @@ export class AddFarmComponent implements OnInit {
     this.farmService.addFarm(addForm.value).subscribe(
       (response: Farm) => {
         console.log(response);
-        this.farms = this.farmListService.getFarms();
+        this.goToFarmList();
       }
     )
+  }
+
+  goToFarmList() {
+    this.router.navigate(['']);
   }
 
 }

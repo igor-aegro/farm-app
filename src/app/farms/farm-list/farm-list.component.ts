@@ -3,9 +3,9 @@ import { Component, Injectable, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Farm } from 'src/app/models/farm.model';
+import { FarmService } from 'src/app/services/farm.service';
 import { EditFarmComponent } from '../edit-farm/edit-farm.component';
 import { FarmDialogsComponent } from '../farm-dialogs/farm-dialogs.component';
-import { FarmListService } from './farm-list.service';
 
 @Component({
   selector: 'app-farm-list',
@@ -13,35 +13,58 @@ import { FarmListService } from './farm-list.service';
   styleUrls: ['./farm-list.component.css']
 })
 export class FarmListComponent implements OnInit {
-  farms!: Farm[];
+  farms: Farm[] = [];
+  farm: Farm = {
+    id:'',
+    name:'',
+    glebes:[],
+    productivity:0
+  };
 
-  constructor(private farmListService: FarmListService,
+  constructor(private farmService: FarmService,
               private router: Router,
               public modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.farms = this.farmListService.getFarms();
-    this.farmListService.farmsChanged.subscribe(
-      (farms:Farm[]) => {
-        this.farms = farms;
-      }
-    );
-    console.log(this.farms);
-    console.log("jkdsgjk");
-    this.farmListService.getFarms();
+    this.getFarms();
   }
 
+  public getFarms(): void {
+    this.farmService.getFarms().subscribe(
+      (response: Farm[]) => {
+        this.farms = response;
+      },
+      (error: HttpErrorResponse) =>{
+        alert(error.message);
+      }
+    );
+  }
+
+  public getFarmById(id: string) {
+    this.farm.id = id;
+    this.farmService.getFarmById(this.farm.id).subscribe(
+      (response: Farm) => {
+        console.log("Response");
+        this.farm = response;
+        console.log(this.farm);
+      },
+      (error: HttpErrorResponse) =>{
+        alert(error.message);
+      }
+    );
+  } 
+
   openEditModal(id: string) {
-    this.farmListService.getFarmById(id);
-    // const modalRef = this.modalService.open(EditFarmComponent);
-    // modalRef.componentInstance.farm = this.farmListService.farm;
-    // console.log("Current info from farm:");
-    // console.log(this.farmListService.farm);
-    // modalRef.result.then((result) => {
-    //   console.log(result);
-    // }).catch((error) => {
-    //   console.log(error);
-    // });
+    this.farmService.getFarmById(id);
+    const modalRef = this.modalService.open(EditFarmComponent);
+    modalRef.componentInstance.farm = this.farm;
+    console.log("Current info from farm:");
+    console.log(this.farm);
+    modalRef.result.then((result) => {
+      console.log(result);
+    }).catch((error) => {
+      console.log(error);
+    });
   }
   
 }

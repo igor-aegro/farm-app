@@ -20,7 +20,7 @@ import { EditFarmComponent } from './farms/edit-farm/edit-farm.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const appRoutes: Routes = [
-  { path: 'farms', component: FarmListComponent },
+  { path: '', component: FarmListComponent },
   { path: 'glebes', component: GlebeListComponent },
   { path: 'glebes/:id/:name', component: GlebesComponent },
   { path: 'productions', component: ProductionListComponent }, 
