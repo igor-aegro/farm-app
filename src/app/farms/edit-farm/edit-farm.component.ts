@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute } from '@angular/router';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Farm } from 'src/app/models/farm.model';
 import { FarmService } from 'src/app/services/farm.service';
 
@@ -10,31 +12,42 @@ import { FarmService } from 'src/app/services/farm.service';
   styleUrls: ['./edit-farm.component.css']
 })
 export class EditFarmComponent implements OnInit {
-  public editFarm!: Farm;
+  @Input() farm!: Farm;
+  @Output() passEntry: EventEmitter<Farm> = new EventEmitter();
 
   constructor(private farmService: FarmService,
-              private activeModal: NgbActiveModal){}
+              private activeModal: NgbActiveModal,
+              private route: ActivatedRoute){}
 
-  ngOnInit(): void {  
+  ngOnInit() {
+    // console.log(this.farm); 
   }
 
   onSubmit(form: NgForm){
-    console.log(form);
+    // console.log(form);
   }
 
   public onUpdateFarm(farm: Farm): void {
-    this.editFarm = farm;
-    console.log(farm.id);
     this.farmService.updateFarm(farm).subscribe(
       (response: Farm) => {
+        this.farm = response;
         console.log(response);
-        // this.goToFarmList();
       }
     );
   }
 
-  closeModal() {
-    this.activeModal.close('Modal Closed');
+  saveEdition(farmData: Farm) {
+    this.farm.name = farmData.name;
+    console.log(farmData.name);
+    console.log("Updated farm:")
+    console.log(this.farm);
+    this.onUpdateFarm(this.farm);
+    this.passEntry.emit(this.farm);
+    this.activeModal.close('this.farm');
+  }
+
+  closeEditModal() {
+    this.activeModal.close('Edit modal closed');
   }
 
 }

@@ -16,6 +16,10 @@ export class FarmService {
         return this.http.get<Farm[]>(`${this.apiServerUrl}/api/v1/farms`);    
     }
 
+    public getFarmById(id: string): Observable<Farm> {
+        return this.http.get<Farm>(`${this.apiServerUrl}/api/v1/farms/${id}`);
+    }
+
     public addFarm(farm: Farm): Observable<Farm> {
         return this.http.post<Farm>(`${this.apiServerUrl}/api/v1/farms`, farm);    
     }

@@ -1,11 +1,11 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Injectable, OnInit } from '@angular/core';
-// import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Farm } from 'src/app/models/farm.model';
-import { FarmService } from 'src/app/services/farm.service';
 import { EditFarmComponent } from '../edit-farm/edit-farm.component';
+import { FarmDialogsComponent } from '../farm-dialogs/farm-dialogs.component';
+import { FarmListService } from './farm-list.service';
 
 @Component({
   selector: 'app-farm-list',
@@ -13,34 +13,35 @@ import { EditFarmComponent } from '../edit-farm/edit-farm.component';
   styleUrls: ['./farm-list.component.css']
 })
 export class FarmListComponent implements OnInit {
-  farms: Farm[] = [];
+  farms!: Farm[];
 
-  constructor(private farmService: FarmService,
+  constructor(private farmListService: FarmListService,
               private router: Router,
               public modalService: NgbModal) { }
 
   ngOnInit(): void {
-    this.getFarms();
-  }
-
-  public getFarms(): void {
-    this.farmService.getFarms().subscribe(
-      (response: Farm[]) => {
-        this.farms = response;
-      },
-      (error: HttpErrorResponse) =>{
-        alert(error.message);
+    this.farms = this.farmListService.getFarms();
+    this.farmListService.farmsChanged.subscribe(
+      (farms:Farm[]) => {
+        this.farms = farms;
       }
     );
+    console.log(this.farms);
+    console.log("jkdsgjk");
+    this.farmListService.getFarms();
   }
 
-  openModal() {
-    const modalRef = this.modalService.open(EditFarmComponent);
-    modalRef.result.then((result) => {
-      console.log(result);
-    }).catch((error) => {
-      console.log(error);
-    });
+  openEditModal(id: string) {
+    this.farmListService.getFarmById(id);
+    // const modalRef = this.modalService.open(EditFarmComponent);
+    // modalRef.componentInstance.farm = this.farmListService.farm;
+    // console.log("Current info from farm:");
+    // console.log(this.farmListService.farm);
+    // modalRef.result.then((result) => {
+    //   console.log(result);
+    // }).catch((error) => {
+    //   console.log(error);
+    // });
   }
   
 }
