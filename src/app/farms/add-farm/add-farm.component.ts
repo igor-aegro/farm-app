@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Farm } from 'src/app/models/farm.model';
@@ -13,15 +13,30 @@ import { FarmListComponent } from '../farm-list/farm-list.component';
 })
 export class AddFarmComponent implements OnInit {
   farms!:Farm[];
+  farm!:Farm;
+  farmsChanged = new EventEmitter<Farm[]>();
 
   constructor(private farmService: FarmService,
     private router: Router) { }
 
   ngOnInit(): void {
+    this.getFarms();
   }
 
   onSubmit(form: NgForm){
     console.log(form);
+  }
+
+  public getFarms(): Farm[] {
+    this.farmService.getFarms().subscribe(
+      (response: Farm[]) => {
+        this.farms = response;
+      },
+      (error: HttpErrorResponse) =>{
+        alert(error.message);
+      }
+    );
+    return this.farms;
   }
 
   onAddFarm(addForm: NgForm): void {
@@ -29,6 +44,9 @@ export class AddFarmComponent implements OnInit {
     this.farmService.addFarm(addForm.value).subscribe(
       (response: Farm) => {
         console.log(response);
+        // this.farms.push(addForm.value);
+        // this.farmsChanged.emit(this.farms);
+        // console.log(this.farms);
         this.goToFarmList();
       }
     )

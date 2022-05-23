@@ -1,5 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Injectable, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Farm } from 'src/app/models/farm.model';
@@ -65,6 +66,22 @@ export class FarmListComponent implements OnInit {
     }).catch((error) => {
       console.log(error);
     });
+  }
+
+  onAddFarm(addForm: NgForm): void {
+    document.getElementById("add-farm-btn")?.click();
+    this.farmService.addFarm(addForm.value).subscribe(
+      (response: Farm) => {
+        console.log(response);
+        this.farms.push(addForm.value);
+        console.log(this.farms);
+        this.goToFarmList();
+      }
+    )
+  }
+
+  goToFarmList() {
+    this.router.navigate(['']);
   }
   
 }
