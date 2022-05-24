@@ -31,28 +31,24 @@ export class FarmListComponent implements OnInit {
   }
 
   public getFarms(): void {
-    this.farmService.getFarms().subscribe(
-      (response: Farm[]) => {
-        this.farms = response;
-      },
-      (error: HttpErrorResponse) =>{
-        alert(error.message);
-      }
-    );
+    this.farmService.getFarms().subscribe({
+      next: (response: Farm[]) => this.farms = response,
+      error: (error: HttpErrorResponse) => alert(error.message)
+    })
+  }
+
+  public addFarmInList(farmName:string){
+    this.farm.name = farmName;
+    this.farms.push(this.farm);
+    this.getFarms();
   }
 
   public getFarmById(id: string) {
     this.farm.id = id;
-    this.farmService.getFarmById(this.farm.id).subscribe(
-      (response: Farm) => {
-        console.log("Response");
-        this.farm = response;
-        console.log(this.farm);
-      },
-      (error: HttpErrorResponse) =>{
-        alert(error.message);
-      }
-    );
+    this.farmService.getFarmById(this.farm.id).subscribe({
+      next: (response: Farm) => this.farm = response,
+      error: (error: HttpErrorResponse) => alert(error.message)
+    })
   } 
 
   openEditModal(id: string) {
@@ -66,22 +62,6 @@ export class FarmListComponent implements OnInit {
     }).catch((error) => {
       console.log(error);
     });
-  }
-
-  onAddFarm(addForm: NgForm): void {
-    document.getElementById("add-farm-btn")?.click();
-    this.farmService.addFarm(addForm.value).subscribe(
-      (response: Farm) => {
-        console.log(response);
-        this.farms.push(addForm.value);
-        console.log(this.farms);
-        this.goToFarmList();
-      }
-    )
-  }
-
-  goToFarmList() {
-    this.router.navigate(['']);
   }
   
 }

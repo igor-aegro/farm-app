@@ -1,41 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light">
-    <div class="col-9">
-        <strong>Fazendas</strong>
-    </div>
-    <button type="button" class="btn confirm-btn" style="width: 20%" data-bs-toggle="modal" data-bs-target="#addFarmModal">
-        + Nova fazenda
-    </button>
-</nav>
-
-<hr>
-    
-<!-- Add farm modal -->
-<div class="modal fade" id="addFarmModal" tabindex="-1" aria-labelledby="addFarmModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-    <div class="modal-content">
-        <div class="modal-header">
-        <h5 class="modal-title" id="addFarmModalLabel">Adicionar nova fazenda</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-            <form #addForm="ngForm" (ngSubmit)="onAddFarm(addForm)">
-            <input type="text" name="name" id="name" ngModel
-            placeholder="*Nome" required #name="ngModel">
-            <div>
-                <span class="help-block" style="padding: 3px;" *ngIf="!name.valid && name.touched">Por favor, insira um nome válido!</span>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn cancel-btn" data-bs-dismiss="modal" id="add-farm-btn">Cancelar</button>
-                <button type="submit" class="btn confirm-btn" >Salvar</button>
-            </div>
-            </form>
-        </div>
-    </div>
-    </div>
-</div>
-
-
 <ul class="list-group">
+    <app-add-farm (farmNameEvent)="addFarmInList($event)"></app-add-farm>
     <div *ngFor="let farm of farms" class="container">
       <li class="list-group-item">
         <div class="col-xl-12">
