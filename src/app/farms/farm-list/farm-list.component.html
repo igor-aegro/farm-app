@@ -10,7 +10,6 @@
 <hr>
 
 <ul class="list-group">
-    <app-add-farm (farmEvent)="addFarmInList($event)"></app-add-farm>
     <div *ngFor="let farm of farms" class="container">
       <li class="list-group-item">
         <div class="col-xl-12">
@@ -28,8 +27,10 @@
                         <i class="fa fa-pencil"></i>
                     </a>
 
-                    <a href="#" class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="Delete" 
-                    data-bs-toggle="modal" data-bs-target="#deleteFarmModal"><i class="fa fa-times"></i></a>
+                    <a href="#" class="btn tooltips"
+                    data-bs-toggle="modal" data-bs-target="#deleteFarmModal" (click)="setFarmIdDeletion(farm.id)">
+                        <i class="fa fa-times"></i>
+                    </a>
                     
                     <a href="#" class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="List"
                     data-bs-toggle="modal" data-bs-target="#listFarmModal" routerLink="/glebes"><i class="fa fa-arrow-right"></i> </a>
@@ -41,4 +42,6 @@
     </div>
 </ul>
 
-<app-add-farm [farmToEditId]="idFarmEdit" (farmEvent)="updateFarmInList($event, idFarmEdit)"></app-add-farm>
+<app-add-farm (farmEvent)="addFarmInList($event)"></app-add-farm>
+<!-- <app-add-farm [farmToEditId]="idFarmEdit" (farmEvent)="updateFarmInList($event, idFarmEdit)"></app-add-farm> -->
+<app-farm-dialogs [farmId]="currentFarmId" (farmDeletedEvent)="deleteFarmFromList($event)"></app-farm-dialogs>

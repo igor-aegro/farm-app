@@ -5,7 +5,6 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Farm } from 'src/app/models/farm.model';
 import { FarmService } from 'src/app/services/farm.service';
-import { EditFarmComponent } from '../edit-farm/edit-farm.component';
 
 @Component({
   selector: 'app-farm-list',
@@ -13,6 +12,7 @@ import { EditFarmComponent } from '../edit-farm/edit-farm.component';
   styleUrls: ['./farm-list.component.css']
 })
 export class FarmListComponent implements OnInit {
+  currentFarmId = '';
   idFarmEdit = '';
   farms: Farm[] = [];
   farm: Farm = {
@@ -30,11 +30,12 @@ export class FarmListComponent implements OnInit {
     this.getFarms();
   }
 
-  public getFarms(): void {
+  public getFarms(): Farm[] {
     this.farmService.getFarms().subscribe({
       next: (response: Farm[]) => this.farms = response,
       error: (error: HttpErrorResponse) => alert(error.message)
     })
+    return this.farms;
   }
 
   public addFarmInList(farmEvent: NgForm){
@@ -46,6 +47,17 @@ export class FarmListComponent implements OnInit {
   public setFarmId(farmId: string){
     this.idFarmEdit = farmId;
     console.log("idFarm", this.idFarmEdit);
+  }
+
+  public setFarmIdDeletion(currentFarmId: string){
+    this.currentFarmId = currentFarmId;
+    console.log("idFarm", this.currentFarmId);
+  }
+
+  deleteFarmFromList(farmId: string){
+    const farmIndex = this.farms.findIndex(farm => farm.id === farmId);
+    this.farms.splice(farmIndex, 1);
+    this.getFarms();
   }
 
   public updateFarmInList(farmEvent: NgForm, idFarmEdit: string){
@@ -67,19 +79,6 @@ export class FarmListComponent implements OnInit {
       error: (error: HttpErrorResponse) => alert(error.message)
     })
     return this.farm;
-  } 
-
-  openEditModal(id: string) {
-    this.farmService.getFarmById(id);
-    const modalRef = this.modalService.open(EditFarmComponent);
-    modalRef.componentInstance.farm = this.farm;
-    console.log("Current info from farm:");
-    console.log(this.farm);
-    modalRef.result.then((result) => {
-      console.log(result);
-    }).catch((error) => {
-      console.log(error);
-    });
   }
   
 }
