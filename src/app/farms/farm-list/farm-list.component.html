@@ -1,5 +1,16 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="col-9">
+        <strong>Fazendas</strong>
+    </div>
+    <button type="button" class="btn confirm-btn" style="width: 20%" data-bs-toggle="modal" data-bs-target="#addFarmModal">
+        + Nova fazenda
+    </button>
+</nav>
+
+<hr>
+
 <ul class="list-group">
-    <app-add-farm (farmNameEvent)="addFarmInList($event)"></app-add-farm>
+    <app-add-farm (farmEvent)="addFarmInList($event)"></app-add-farm>
     <div *ngFor="let farm of farms" class="container">
       <li class="list-group-item">
         <div class="col-xl-12">
@@ -11,9 +22,12 @@
                     <h5>Fazenda {{farm?.name}} {{farm?.id}}</h5>
                 </div>
                 <div class="col-2 btn-group btn-sm" role="group">
-                    
-                    <a href="#" class="btn tooltips" (click)="openEditModal(farm.id)"><i class="fa fa-pencil"></i> </a>
-                    
+                
+                    <a href="#" class="btn tooltips" data-bs-toggle="modal" 
+                    data-bs-target="#editFarmModal" (click)="setFarmId(farm.id)">
+                        <i class="fa fa-pencil"></i>
+                    </a>
+
                     <a href="#" class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="Delete" 
                     data-bs-toggle="modal" data-bs-target="#deleteFarmModal"><i class="fa fa-times"></i></a>
                     
@@ -25,4 +39,6 @@
         </div>
       </li>
     </div>
-    </ul>
+</ul>
+
+<app-add-farm [farmToEditId]="idFarmEdit" (farmEvent)="updateFarmInList($event, idFarmEdit)"></app-add-farm>

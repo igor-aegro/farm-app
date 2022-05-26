@@ -11,7 +11,8 @@ import { FarmService } from 'src/app/services/farm.service';
   styleUrls: ['./add-farm.component.css']
 })
 export class AddFarmComponent implements OnInit {
-  @Output() farmNameEvent = new EventEmitter<string>();
+  @Input() farmToEditId = '';
+  @Output() farmEvent = new EventEmitter<NgForm>();
 
   constructor(private farmService: FarmService,
     private router: Router) { }
@@ -25,9 +26,24 @@ export class AddFarmComponent implements OnInit {
 
   onAddFarm(addForm: NgForm): void {
     document.getElementById("add-farm-btn")?.click();
+    addForm.value['glebes'] = [];
+    addForm.value['productivity'] = 0;
     this.farmService.addFarm(addForm.value).subscribe(
       (response: Farm) => {
-        this.farmNameEvent.emit(addForm.value['name']);
+        console.log(addForm.value);
+        this.farmEvent.emit(addForm);
+      }
+    )
+  }
+
+  onUpdateFarm(editForm: NgForm): void {
+    console.log(this.farmToEditId);
+    editForm.value['id'] = this.farmToEditId;
+    document.getElementById("add-farm-btn")?.click();
+    this.farmService.updateFarm(editForm.value).subscribe(
+      (response: Farm) => {
+        console.log("Updated form:", editForm);
+        this.farmEvent.emit(editForm);
       }
     )
   }
