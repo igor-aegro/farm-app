@@ -52,7 +52,7 @@ export class AddFarmComponent implements OnInit {
   }
 
   onUpdateFarm(editForm: NgForm): void {
-    document.getElementById("add-farm-btn")?.click();
+    document.getElementById("close-edit-farm-btn")?.click();
     this.getFarmById(this.farmIdEdit);
     editForm.value['id'] = this.farmIdEdit;
     editForm.value['glebes'] = this.farm.glebes;

@@ -25,7 +25,7 @@ export class FarmDialogsComponent implements OnInit {
 
   deleteFarm(farmId: string){
     this.farmService.deleteFarm(farmId).subscribe({
-      next: response => this.farmDeletedEvent.emit(), // the emission has to be here
+      next: response => this.farmDeletedEvent.emit(),
       error: (error: HttpErrorResponse) => alert(error.message)
     })
     console.log("Farm deleted!");
