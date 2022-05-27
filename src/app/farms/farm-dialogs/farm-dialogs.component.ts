@@ -11,7 +11,7 @@ import { FarmService } from 'src/app/services/farm.service';
 })
 export class FarmDialogsComponent implements OnInit {
   @Input() farmId = '';
-  @Output() farmDeletedEvent = new EventEmitter<string>();
+  @Output() farmDeletedEvent = new EventEmitter<any>();
 
   constructor(private farmService: FarmService){}
 
@@ -25,7 +25,7 @@ export class FarmDialogsComponent implements OnInit {
 
   deleteFarm(farmId: string){
     this.farmService.deleteFarm(farmId).subscribe({
-      next: response => this.farmDeletedEvent.emit(farmId), // the emission has to be here
+      next: response => this.farmDeletedEvent.emit(), // the emission has to be here
       error: (error: HttpErrorResponse) => alert(error.message)
     })
     console.log("Farm deleted!");

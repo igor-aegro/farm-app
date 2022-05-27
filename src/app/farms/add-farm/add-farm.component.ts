@@ -12,8 +12,15 @@ import { FarmService } from 'src/app/services/farm.service';
 })
 export class AddFarmComponent implements OnInit {
   @Input() farmIdEdit = '';
-  @Output() farmEvent = new EventEmitter<NgForm>();
-  @Output() farmEditEvent = new EventEmitter<NgForm>();
+  @Output() farmEvent = new EventEmitter<any>();
+  @Output() farmEditEvent = new EventEmitter<any>();
+
+  farm: Farm = {
+    id:'',
+    name:'',
+    glebes:[],
+    productivity:0
+  };
 
   constructor(private farmService: FarmService,
     private router: Router) { }
@@ -25,6 +32,13 @@ export class AddFarmComponent implements OnInit {
     console.log(form);
   }
 
+  public getFarmById(id: string) {
+    this.farmService.getFarmById(id).subscribe({
+      next: (response: Farm) => this.farm = response,
+      error: (error: HttpErrorResponse) => alert(error.message)
+    })
+  }
+
   onAddFarm(addForm: NgForm): void {
     document.getElementById("add-farm-btn")?.click();
     addForm.value['glebes'] = [];
@@ -32,19 +46,22 @@ export class AddFarmComponent implements OnInit {
     this.farmService.addFarm(addForm.value).subscribe(
       (response: Farm) => {
         console.log(addForm.value);
-        this.farmEvent.emit(addForm);
+        this.farmEvent.emit();
       }
     )
   }
 
   onUpdateFarm(editForm: NgForm): void {
-    console.log("edit id:", this.farmIdEdit);
-    editForm.value['id'] = this.farmIdEdit;
-    this.farmService.updateFarm(editForm.value).subscribe({
-      next: (response: Farm) => this.farmEditEvent.emit(editForm),
-      error: (error: HttpErrorResponse) => alert(error.message)
-  })
     document.getElementById("add-farm-btn")?.click();
+    this.getFarmById(this.farmIdEdit);
+    editForm.value['id'] = this.farmIdEdit;
+    editForm.value['glebes'] = this.farm.glebes;
+    editForm.value['productivity'] = this.farm.productivity;
+    console.log("form:", editForm.value);
+    this.farmService.updateFarm(editForm.value).subscribe({
+      next: (response: Farm) => this.farmEvent.emit(),
+      error: (error: HttpErrorResponse) => alert(error.message)
+    })
   }
 
 }

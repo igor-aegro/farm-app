@@ -15,12 +15,6 @@ export class FarmListComponent implements OnInit {
   currentFarmId = '';
   currentFarmIdEdit = '';
   farms: Farm[] = [];
-  farm: Farm = {
-    id:'',
-    name:'',
-    glebes:[],
-    productivity:0
-  };
 
   constructor(private farmService: FarmService,
               private router: Router,
@@ -38,12 +32,6 @@ export class FarmListComponent implements OnInit {
     return this.farms;
   }
 
-  public addFarmInList(farmEvent: NgForm){
-    // this.farm.name = farmEvent.value['name'];
-    // this.farms.push(this.farm);
-    this.getFarms();
-  }
-
   public setFarmId(farmId: string){
     this.currentFarmIdEdit = farmId;
     console.log("idFarm", this.currentFarmIdEdit);
@@ -54,29 +42,8 @@ export class FarmListComponent implements OnInit {
     console.log("idFarm", this.currentFarmId);
   }
 
-  deleteFarmFromList(farmId: string){
-    // const farmIndex = this.farms.findIndex(farm => farm.id === farmId);
-    // this.farms.splice(farmIndex, 1);
+  public updateFarmList(){
     this.getFarms();
-  }
-
-  public updateFarmInList(farmEvent: NgForm){
-    // this.farm = this.getFarmById(this.currentFarmIdEdit);
-    // console.log("Farm to be updated:", this.farm);
-    // this.farm.name = farmEvent.value['name'];
-    // console.log("Updated local farm:", this.farm);
-    // const farmIndex = this.farms.findIndex(farm => farm.id === this.currentFarmIdEdit);
-    // this.farms[farmIndex] = this.farm;
-    this.getFarms();
-    // console.log("Updated db farm:", this.farms[farmIndex]);
-  }
-
-  public getFarmById(id: string) {
-    this.farmService.getFarmById(id).subscribe({
-      next: (response: Farm) => this.farm = response,
-      error: (error: HttpErrorResponse) => alert(error.message)
-    })
-    return this.farm;
   }
   
 }
