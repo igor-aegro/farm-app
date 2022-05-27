@@ -20,7 +20,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 const appRoutes: Routes = [
   { path: '', component: FarmListComponent },
-  { path: 'glebes', component: GlebeListComponent },
+  { path: ':id/glebes', component: GlebeListComponent },
   { path: 'glebes/:id/:name', component: GlebesComponent },
   { path: 'productions', component: ProductionListComponent }, 
 ];
