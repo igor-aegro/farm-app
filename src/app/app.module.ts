@@ -17,6 +17,7 @@ import { ProductionDialogsComponent } from './productions/production-dialogs/pro
 import { RouterModule, Routes } from '@angular/router';
 import { AddFarmComponent } from './farms/add-farm/add-farm.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AddUpdateGlebeComponent } from './glebes/add-update-glebe/add-update-glebe.component';
 
 const appRoutes: Routes = [
   { path: '', component: FarmListComponent },
@@ -38,7 +39,8 @@ const appRoutes: Routes = [
     FarmDialogsComponent,
     GlebeDialogsComponent,
     ProductionDialogsComponent,
-    AddFarmComponent
+    AddFarmComponent,
+    AddUpdateGlebeComponent
   ],
   imports: [
     BrowserModule,

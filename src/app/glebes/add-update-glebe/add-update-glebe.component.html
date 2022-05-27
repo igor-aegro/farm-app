@@ -1,0 +1,27 @@
+
+<!-- Add glebe modal -->
+<div class="modal fade" id="addGlebeModal" tabindex="-1" aria-labelledby="addGlebeModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+    <div class="modal-content">
+        <div class="modal-header">
+        <h5 class="modal-title" id="addGlebeModalLabel">Adicionar nova fazenda</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <form #addGlebeForm="ngForm" (ngSubmit)="onAddGlebe(addGlebeForm)">
+            <input type="text" name="name" id="name" ngModel
+            placeholder="*Nome" required #name="ngModel">
+            <div>
+                <span class="help-block" style="padding: 3px;" *ngIf="!name.valid && name.touched">Por favor, insira um nome válido!</span>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn cancel-btn" data-bs-dismiss="modal" id="add-glebe-btn">Cancelar</button>
+                <button type="submit" class="btn confirm-btn" >Salvar</button>
+            </div>
+            </form>
+        </div>
+    </div>
+    </div>
+</div>
+
+

@@ -1,8 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Farm } from 'src/app/models/farm.model';
+import { Glebe } from 'src/app/models/glebe.model';
 import { FarmService } from 'src/app/services/farm.service';
+import { GlebeService } from 'src/app/services/glebe.service';
 
 @Component({
   selector: 'app-glebe-list',
@@ -17,26 +19,12 @@ export class GlebeListComponent implements OnInit {
     productivity:0
   }
 
-  glebes = [
-    {
-      id: 1,
-      name: 'glebeA',
-      area: 0
-    },
-    {
-      id: 2,
-      name: 'glebeB',
-      area: 0
-    },
-    {
-      id: 3,
-      name: 'glebeC',
-      area: 0
-    }
-  ];
+  glebes: Glebe[] = [];
 
   constructor(private farmService: FarmService,
-              private route: ActivatedRoute) { }
+              private glebeService: GlebeService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.farm.id = this.route.snapshot.params['id'];
@@ -45,6 +33,16 @@ export class GlebeListComponent implements OnInit {
       next: (response: Farm) => this.farm = response,
       error: (error: HttpErrorResponse) => alert(error.message)
     })
+
+    this.getGlebes();
+  }
+
+  public getGlebes(): Glebe[] {
+    this.glebeService.getGlebes().subscribe({
+      next: (response: Glebe[]) => this.glebes = response,
+      error: (error: HttpErrorResponse) => alert(error.message)
+    })
+    return this.glebes;
   }
 
 }

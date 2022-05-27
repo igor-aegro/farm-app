@@ -17,8 +17,7 @@ export class FarmListComponent implements OnInit {
   farms: Farm[] = [];
 
   constructor(private farmService: FarmService,
-              private router: Router,
-              public modalService: NgbModal) { }
+              private router: Router) { }
 
   ngOnInit(): void {
     this.getFarms();
