@@ -37,17 +37,15 @@
       <form #editForm="ngForm" (ngSubmit)="onUpdateFarm(editForm)">
         <input type="text" name="name" id="name" ngModel
         placeholder="*Nome" required #name="ngModel">
-        <input type="hidden" ngModel
-        name="farmId" id="farmId">
         <div>
             <span class="help-block" style="padding: 3px;" *ngIf="!name.valid && name.touched">Por favor, insira um nome válido!</span>
         </div>
+      </form>
+    </div>
   <div class="modal-footer">
     <button type="button" class="btn cancel-btn" data-bs-dismiss="modal" id="add-farm-btn">Cancelar</button>
     <button type="submit" class="btn confirm-btn">Salvar</button>
   </div>
-</form>
-</div>
 </div>
 </div>
 </div>

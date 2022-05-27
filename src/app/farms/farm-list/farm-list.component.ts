@@ -13,7 +13,7 @@ import { FarmService } from 'src/app/services/farm.service';
 })
 export class FarmListComponent implements OnInit {
   currentFarmId = '';
-  idFarmEdit = '';
+  currentFarmIdEdit = '';
   farms: Farm[] = [];
   farm: Farm = {
     id:'',
@@ -39,14 +39,14 @@ export class FarmListComponent implements OnInit {
   }
 
   public addFarmInList(farmEvent: NgForm){
-    this.farm.name = farmEvent.value['name'];
-    this.farms.push(this.farm);
+    // this.farm.name = farmEvent.value['name'];
+    // this.farms.push(this.farm);
     this.getFarms();
   }
 
   public setFarmId(farmId: string){
-    this.idFarmEdit = farmId;
-    console.log("idFarm", this.idFarmEdit);
+    this.currentFarmIdEdit = farmId;
+    console.log("idFarm", this.currentFarmIdEdit);
   }
 
   public setFarmIdDeletion(currentFarmId: string){
@@ -55,22 +55,20 @@ export class FarmListComponent implements OnInit {
   }
 
   deleteFarmFromList(farmId: string){
-    const farmIndex = this.farms.findIndex(farm => farm.id === farmId);
-    this.farms.splice(farmIndex, 1);
+    // const farmIndex = this.farms.findIndex(farm => farm.id === farmId);
+    // this.farms.splice(farmIndex, 1);
     this.getFarms();
   }
 
-  public updateFarmInList(farmEvent: NgForm, idFarmEdit: string){
-    console.log("edit id", idFarmEdit);
-    farmEvent.value['id'] = idFarmEdit;
-    this.farm = this.getFarmById(farmEvent.value['id']);
-    console.log("Farm to be updated:", this.farm);
-    this.farm.name = farmEvent.value['name'];
-    console.log("Updated local farm:", this.farm);
-    const farmIndex = this.farms.findIndex(farm => farm.id === farmEvent.value['id']);
-    this.farms[farmIndex] = this.farm;
+  public updateFarmInList(farmEvent: NgForm){
+    // this.farm = this.getFarmById(this.currentFarmIdEdit);
+    // console.log("Farm to be updated:", this.farm);
+    // this.farm.name = farmEvent.value['name'];
+    // console.log("Updated local farm:", this.farm);
+    // const farmIndex = this.farms.findIndex(farm => farm.id === this.currentFarmIdEdit);
+    // this.farms[farmIndex] = this.farm;
     this.getFarms();
-    console.log("Updated db farm:", this.farms[farmIndex]);
+    // console.log("Updated db farm:", this.farms[farmIndex]);
   }
 
   public getFarmById(id: string) {

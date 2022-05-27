@@ -1,3 +1,4 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -10,8 +11,9 @@ import { FarmService } from 'src/app/services/farm.service';
   styleUrls: ['./add-farm.component.css']
 })
 export class AddFarmComponent implements OnInit {
-  @Input() farmToEditId = '';
+  @Input() farmIdEdit = '';
   @Output() farmEvent = new EventEmitter<NgForm>();
+  @Output() farmEditEvent = new EventEmitter<NgForm>();
 
   constructor(private farmService: FarmService,
     private router: Router) { }
@@ -36,15 +38,13 @@ export class AddFarmComponent implements OnInit {
   }
 
   onUpdateFarm(editForm: NgForm): void {
-    console.log(this.farmToEditId);
-    editForm.value['id'] = this.farmToEditId;
+    console.log("edit id:", this.farmIdEdit);
+    editForm.value['id'] = this.farmIdEdit;
+    this.farmService.updateFarm(editForm.value).subscribe({
+      next: (response: Farm) => this.farmEditEvent.emit(editForm),
+      error: (error: HttpErrorResponse) => alert(error.message)
+  })
     document.getElementById("add-farm-btn")?.click();
-    this.farmService.updateFarm(editForm.value).subscribe(
-      (response: Farm) => {
-        console.log("Updated form:", editForm);
-        this.farmEvent.emit(editForm);
-      }
-    )
   }
 
 }

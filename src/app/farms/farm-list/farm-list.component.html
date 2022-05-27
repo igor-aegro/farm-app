@@ -42,6 +42,6 @@
     </div>
 </ul>
 
-<app-add-farm (farmEvent)="addFarmInList($event)"></app-add-farm>
-<!-- <app-add-farm [farmToEditId]="idFarmEdit" (farmEvent)="updateFarmInList($event, idFarmEdit)"></app-add-farm> -->
+<!-- <app-add-farm (farmEvent)="addFarmInList($event)"></app-add-farm> -->
+<app-add-farm [farmIdEdit]="currentFarmIdEdit" (farmEvent)="addFarmInList($event)" (farmEditEvent)="updateFarmInList($event)"></app-add-farm>
 <app-farm-dialogs [farmId]="currentFarmId" (farmDeletedEvent)="deleteFarmFromList($event)"></app-farm-dialogs>
