@@ -5,5 +5,5 @@ export interface Glebe {
     name: string, 
     area: number, 
     productivity: number, 
-    productions: Production[]
+    // productions: Production[]
 }

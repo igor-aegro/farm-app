@@ -22,7 +22,7 @@ import { AddUpdateGlebeComponent } from './glebes/add-update-glebe/add-update-gl
 const appRoutes: Routes = [
   { path: '', component: FarmListComponent },
   { path: ':id/glebes', component: GlebeListComponent },
-  { path: 'glebes/:id/:name', component: GlebesComponent },
+  // { path: 'glebes/:id/:name', component: GlebesComponent },
   { path: 'productions', component: ProductionListComponent }, 
 ];
 

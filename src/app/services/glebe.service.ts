@@ -21,7 +21,7 @@ export class GlebeService {
     // }
 
     public addGlebe(farmId: string, glebe: Glebe): Observable<Glebe> {
-        return this.http.post<Glebe>(`${this.apiServerUrl}/api/v1/${farmId}/glebe`, glebe);    
+        return this.http.post<Glebe>(`${this.apiServerUrl}/api/v1/farms/${farmId}/glebe/`, glebe);    
     }
 
     // public updateGlebe(glebe: Glebe): Observable<Glebe> {

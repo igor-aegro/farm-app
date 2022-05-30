@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Glebe } from 'src/app/models/glebe.model';
 import { GlebeService } from 'src/app/services/glebe.service';
@@ -9,6 +9,8 @@ import { GlebeService } from 'src/app/services/glebe.service';
   styleUrls: ['./add-update-glebe.component.css']
 })
 export class AddUpdateGlebeComponent implements OnInit {
+  @Input() farmId = '';
+  @Output() glebeEvent = new EventEmitter<any>();
 
   constructor(private glebeService: GlebeService) { }
 
@@ -17,12 +19,11 @@ export class AddUpdateGlebeComponent implements OnInit {
 
   onAddGlebe(addGlebeForm: NgForm): void {
     document.getElementById("add-glebe-btn")?.click();
-    addGlebeForm.value['area'] = 0;
     addGlebeForm.value['productivity'] = 0;
-    this.glebeService.addGlebe('SOMEID', addGlebeForm.value).subscribe(
+    this.glebeService.addGlebe(this.farmId, addGlebeForm.value).subscribe(
       (response: Glebe) => {
         console.log(addGlebeForm.value);
-        // this.glebeEvent.emit();
+        this.glebeEvent.emit();
       }
     )
   }

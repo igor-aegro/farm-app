@@ -19,8 +19,6 @@ export class GlebeListComponent implements OnInit {
     productivity:0
   }
 
-  glebes: Glebe[] = [];
-
   constructor(private farmService: FarmService,
               private glebeService: GlebeService,
               private route: ActivatedRoute,
@@ -28,21 +26,19 @@ export class GlebeListComponent implements OnInit {
 
   ngOnInit(): void {
     this.farm.id = this.route.snapshot.params['id'];
-    
+    this.getGlebesFromFarm();
+  }
+
+  getFarmById(){
     this.farmService.getFarmById(this.farm.id).subscribe({
       next: (response: Farm) => this.farm = response,
       error: (error: HttpErrorResponse) => alert(error.message)
     })
-
-    this.getGlebes();
   }
 
-  public getGlebes(): Glebe[] {
-    this.glebeService.getGlebes().subscribe({
-      next: (response: Glebe[]) => this.glebes = response,
-      error: (error: HttpErrorResponse) => alert(error.message)
-    })
-    return this.glebes;
+  public getGlebesFromFarm() {
+    this.getFarmById();
+    console.log(this.farm);
   }
 
 }
