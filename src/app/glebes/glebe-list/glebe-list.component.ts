@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Farm } from 'src/app/models/farm.model';
 import { Glebe } from 'src/app/models/glebe.model';
@@ -12,6 +12,7 @@ import { GlebeService } from 'src/app/services/glebe.service';
   styleUrls: ['./glebe-list.component.css']
 })
 export class GlebeListComponent implements OnInit {
+  currentGlebeIdEdit = '';
   farm: Farm = {
     id:'',
     name:'',
@@ -39,6 +40,11 @@ export class GlebeListComponent implements OnInit {
   public getGlebesFromFarm() {
     this.getFarmById();
     console.log(this.farm);
+  }
+
+  public setGlebeId(glebeId: string){
+    this.currentGlebeIdEdit = glebeId;
+    console.log("idGlebe", this.currentGlebeIdEdit);
   }
 
 }

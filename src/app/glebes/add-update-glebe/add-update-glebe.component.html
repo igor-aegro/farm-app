@@ -29,4 +29,32 @@
     </div>
 </div>
 
-
+<!-- Edit Glebe modal -->
+<div class="modal fade" id="editGlebeModal" tabindex="-1" aria-labelledby="editGlebeModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editGlebeModalLabel">Editar dados da área</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form #editGlebeForm="ngForm" (ngSubmit)="onUpdateGlebe(editGlebeForm)">
+        <input type="text" class="input-style" name="name" id="name" ngModel
+        placeholder="*Nome" required #name="ngModel">
+        <div>
+          <span class="help-block" style="margin: 3px;" *ngIf="!name.valid && name.touched">Por favor, insira um nome válido!</span>
+        </div>
+        <input type="text" class="input-style" name="area" id="area" ngModel
+        placeholder="*Tamanho(ha)" required #area="ngModel">
+        <div>
+          <span class="help-block" style="margin: 3px;" *ngIf="!name.valid && name.touched">Por favor, insira uma área válida!</span>
+        </div>
+      <div class="modal-footer">
+        <button type="button" class="btn cancel-btn" data-bs-dismiss="modal" id="close-edit-glebe-btn">Cancelar</button>
+        <button type="submit" class="btn confirm-btn">Salvar</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
