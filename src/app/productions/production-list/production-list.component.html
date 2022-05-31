@@ -1,14 +1,13 @@
 <nav class="navbar navbar-expand-lg navbar-light" style="margin: 20px 20px;">
     <div class="col-1">
-        <a href="#" class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="List"
-        data-bs-toggle="modal" data-bs-target="#listGlebeModal" routerLink="/glebes"><i class="fa fa-arrow-left"></i> </a>
+        <a href="#" class="btn tooltips" data-placement="right" data-toggle="tooltip" routerLink="/glebes"><i class="fa fa-arrow-left"></i> </a>
     </div>
     <div class="col-6 mb-0 header-title">
-        <strong> Área AAAAAAAAAAA </strong>
+        <strong> Área {{ glebe.name }} </strong>
     </div>
     <div class="col-4">
         <h6>Produtividade</h6>
-        <h6>400 kg/ha</h6>
+        <h6>{{ glebe.productivity }} kg/ha</h6>
     </div>
     <div class="col-1 btn-group btn-sm" role="group">
         
@@ -29,6 +28,7 @@
 <hr>
 
 <ul class="list-group">
+<div *ngFor="let production of glebe.productions" class="container">
 <li class="list-group-item">
     <div class="col-xl-12">
         <div class="row align-items-center d-flex">
@@ -36,7 +36,7 @@
                 <i class="fas fa-warehouse"></i>
             </div>
             <div class="col-8 mb-0">
-                <h5>300 kg</h5>
+                <h5>{{ production.production }} kg</h5>
                 <h6>Produzidos</h6>
             </div>
             <div class="col-2 btn-group btn-sm" role="group">
@@ -51,4 +51,7 @@
         </div>
     </div>
 </li>
+</div>
 </ul>
+
+<app-add-update-production [glebeId]="glebe.id" (productionEvent)="getProductionsFromGlebe(glebe.id)"></app-add-update-production>
