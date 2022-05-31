@@ -46,7 +46,7 @@
                         data-bs-toggle="modal" data-bs-target="#editGlebeModal" (click)="setGlebeId(glebe.id)"><i class="fa fa-pencil"></i> </a>
                         
                         <a href="#" class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="Delete" 
-                        data-bs-toggle="modal" data-bs-target="#deleteGlebeModal"><i class="fa fa-times"></i></a>
+                        data-bs-toggle="modal" data-bs-target="#deleteGlebeModal" (click)="setGlebeIdDeletion(glebe.id)"><i class="fa fa-times"></i></a>
                         
                         <a href="#" class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="List"
                         data-bs-toggle="modal" data-bs-target="#listGlebeModal" routerLink="/productions"><i class="fa fa-arrow-right"></i> </a>
@@ -59,3 +59,4 @@
 </ul>
 
 <app-add-update-glebe [glebeIdEdit]="currentGlebeIdEdit" [farmId]="farm.id" (glebeEvent)="getGlebesFromFarm()"></app-add-update-glebe>
+<app-glebe-dialogs [glebeId]="currentGlebeId" [farmId]="farm.id" (glebeDeletedEvent)="getGlebesFromFarm()"></app-glebe-dialogs>

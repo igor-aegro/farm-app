@@ -12,6 +12,7 @@ import { GlebeService } from 'src/app/services/glebe.service';
   styleUrls: ['./glebe-list.component.css']
 })
 export class GlebeListComponent implements OnInit {
+  currentGlebeId = '';
   currentGlebeIdEdit = '';
   farm: Farm = {
     id:'',
@@ -45,6 +46,11 @@ export class GlebeListComponent implements OnInit {
   public setGlebeId(glebeId: string){
     this.currentGlebeIdEdit = glebeId;
     console.log("idGlebe", this.currentGlebeIdEdit);
+  }
+
+  public setGlebeIdDeletion(glebeId: string){
+    this.currentGlebeId = glebeId;
+    console.log("idGlebe", this.currentGlebeId);
   }
 
 }

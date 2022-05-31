@@ -28,8 +28,8 @@ export class GlebeService {
         return this.http.put<Glebe>(`${this.apiServerUrl}/api/v1/farms/${farmId}/glebe/${glebeId}`, glebe);    
     }
 
-    // public deleteGlebe(glebeId: string): Observable<void> {
-    //     return this.http.delete<void>(`${this.apiServerUrl}/api/v1/glebes/${glebeId}`);   
-    // }
+    public deleteGlebe(farmId: string, glebeId: string): Observable<void> {
+        return this.http.delete<void>(`${this.apiServerUrl}/api/v1/farms/${farmId}/glebe/${glebeId}`);   
+    }
 
 }
