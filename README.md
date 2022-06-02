@@ -2,7 +2,7 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.3.4.
 
-See your farm factory working :)
+See the farm-app working :)
 
 ![12625713-cee5-4acc-9577-46ef6e9aecc1](https://user-images.githubusercontent.com/103006827/171658961-b40ec50d-cd78-463a-a7f8-f1f367b8d605.gif)
 
