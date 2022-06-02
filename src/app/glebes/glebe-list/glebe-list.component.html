@@ -1,10 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light" style="margin: 20px 20px;">
     <div class="col-1">
         <a href="#" class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="List"
-        data-bs-toggle="modal" data-bs-target="#listFarmModal" routerLink="/farms"><i class="fa fa-arrow-left"></i> </a>
+        routerLink=""><i class="fa fa-arrow-left"></i> </a>
     </div>
     <div class="col-6 mb-0 header-title">
-        <strong> Fazenda AAAAAAAAAAA </strong>
+        <strong> Fazenda {{ farm.name }} </strong>
     </div>
     <div class="col-4">
         <h6>Produtividade</h6>
@@ -29,7 +29,7 @@
 <hr>
 
 <ul class="list-group">
-    <div *ngFor="let glebe of glebes" class="container">
+    <div *ngFor="let glebe of farm.glebes" class="container">
         <li class="list-group-item">
             <div class="col-xl-12">
                 <div class="row align-items-center d-flex">
@@ -37,13 +37,13 @@
                         <i class="far fa-map"></i>
                     </div>
                     <div class="col-8 mb-0">
-                        <h5>{{ glebe.name }}</h5>
+                        <h5>{{ glebe.name }} {{ glebe.id }}</h5>
                         <h6>{{ glebe.area }}</h6>
                     </div>
                     <div class="col-2 btn-group btn-sm" role="group">
                         
                         <a href="#" class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="Edit"
-                        data-bs-toggle="modal" data-bs-target="#editGlebeModal"><i class="fa fa-pencil"></i> </a>
+                        data-bs-toggle="modal" data-bs-target="#editGlebeModal" (click)="setGlebeId(glebe.id)"><i class="fa fa-pencil"></i> </a>
                         
                         <a href="#" class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="Delete" 
                         data-bs-toggle="modal" data-bs-target="#deleteGlebeModal"><i class="fa fa-times"></i></a>
@@ -57,3 +57,5 @@
         </li>
     </div>
 </ul>
+
+<app-add-update-glebe [glebeIdEdit]="currentGlebeIdEdit" [farmId]="farm.id" (glebeEvent)="getGlebesFromFarm()"></app-add-update-glebe>

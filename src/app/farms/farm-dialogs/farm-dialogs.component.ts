@@ -1,9 +1,8 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Farm } from 'src/app/models/farm.model';
 import { FarmService } from 'src/app/services/farm.service';
-import { FarmListComponent } from '../farm-list/farm-list.component';
 
 @Component({
   selector: 'app-farm-dialogs',
@@ -11,7 +10,8 @@ import { FarmListComponent } from '../farm-list/farm-list.component';
   styleUrls: ['./farm-dialogs.component.css']
 })
 export class FarmDialogsComponent implements OnInit {
-  
+  @Input() farmId = '';
+  @Output() farmDeletedEvent = new EventEmitter<any>();
 
   constructor(private farmService: FarmService){}
 
@@ -21,6 +21,14 @@ export class FarmDialogsComponent implements OnInit {
 
   onSubmit(form: NgForm){
     console.log(form);
+  }
+
+  deleteFarm(farmId: string){
+    this.farmService.deleteFarm(farmId).subscribe({
+      next: response => this.farmDeletedEvent.emit(),
+      error: (error: HttpErrorResponse) => alert(error.message)
+    })
+    console.log("Farm deleted!");
   }
 
 }

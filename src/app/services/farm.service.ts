@@ -28,8 +28,8 @@ export class FarmService {
         return this.http.put<Farm>(`${this.apiServerUrl}/api/v1/farms/${farm.id}`, farm);    
     }
 
-    // public deleteFarm(farmId: string): Observable<void> {
-    //     return this.http.delete<void>(`${this.apiServerUrl}/farm/delete/${farmId}`);   
-    // }
+    public deleteFarm(farmId: string): Observable<void> {
+        return this.http.delete<void>(`${this.apiServerUrl}/api/v1/farms/${farmId}`);   
+    }
 
 }

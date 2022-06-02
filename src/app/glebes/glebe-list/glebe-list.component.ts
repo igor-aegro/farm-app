@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Component, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Farm } from 'src/app/models/farm.model';
+import { Glebe } from 'src/app/models/glebe.model';
+import { FarmService } from 'src/app/services/farm.service';
+import { GlebeService } from 'src/app/services/glebe.service';
 
 @Component({
   selector: 'app-glebe-list',
@@ -6,27 +12,39 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./glebe-list.component.css']
 })
 export class GlebeListComponent implements OnInit {
-  glebes = [
-    {
-      id: 1,
-      name: 'glebeA',
-      area: 0
-    },
-    {
-      id: 2,
-      name: 'glebeB',
-      area: 0
-    },
-    {
-      id: 3,
-      name: 'glebeC',
-      area: 0
-    }
-  ];
+  currentGlebeIdEdit = '';
+  farm: Farm = {
+    id:'',
+    name:'',
+    glebes:[],
+    productivity:0
+  }
 
-  constructor() { }
+  constructor(private farmService: FarmService,
+              private glebeService: GlebeService,
+              private route: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit(): void {
+    this.farm.id = this.route.snapshot.params['id'];
+    this.getGlebesFromFarm();
+  }
+
+  getFarmById(){
+    this.farmService.getFarmById(this.farm.id).subscribe({
+      next: (response: Farm) => this.farm = response,
+      error: (error: HttpErrorResponse) => alert(error.message)
+    })
+  }
+
+  public getGlebesFromFarm() {
+    this.getFarmById();
+    console.log(this.farm);
+  }
+
+  public setGlebeId(glebeId: string){
+    this.currentGlebeIdEdit = glebeId;
+    console.log("idGlebe", this.currentGlebeIdEdit);
   }
 
 }

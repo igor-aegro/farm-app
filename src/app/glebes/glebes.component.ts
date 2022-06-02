@@ -8,22 +8,22 @@ import { Glebe } from '../models/glebe.model';
   styleUrls: ['./glebes.component.css']
 })
 export class GlebesComponent implements OnInit {
-  glebe!: Glebe;
+  // glebe!: Glebe;
 
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.glebe = {
-      id: this.route.snapshot.params['id'],
-      name: this.route.snapshot.params['name']
-    }
-    this.route.params
-    .subscribe(
-      (params: Params) => {
-        this.glebe.id = params['id'];
-        this.glebe.name = params['name'];
-      }
-    )
+    // this.glebe = {
+    //   id: this.route.snapshot.params['id'],
+    //   name: this.route.snapshot.params['name']
+    // }
+    // this.route.params
+    // .subscribe(
+    //   (params: Params) => {
+    //     this.glebe.id = params['id'];
+    //     this.glebe.name = params['name'];
+    //   }
+    // )
   }
 
 }
