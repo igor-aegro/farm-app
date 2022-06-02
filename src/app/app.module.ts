@@ -21,10 +21,9 @@ import { AddUpdateGlebeComponent } from './glebes/add-update-glebe/add-update-gl
 import { AddUpdateProductionComponent } from './productions/add-update-production/add-update-production.component';
 
 const appRoutes: Routes = [
-  { path: '', component: FarmListComponent },
-  { path: ':id/glebes', component: GlebeListComponent },
-  // { path: 'glebes/:id/:name', component: GlebesComponent },
-  { path: ':id/productions', component: ProductionListComponent }, 
+  { path: 'farms', component: FarmListComponent },
+  { path: 'farms/:farmId/glebes', component: GlebeListComponent },
+  { path: 'farms/:farmId/glebes/:glebeId/productions', component: ProductionListComponent }, 
 ];
 
 @NgModule({

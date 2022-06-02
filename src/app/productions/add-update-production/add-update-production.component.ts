@@ -10,6 +10,7 @@ import { ProductionService } from 'src/app/services/production.service';
   styleUrls: ['./add-update-production.component.css']
 })
 export class AddUpdateProductionComponent implements OnInit {
+  @Input() productionId = '';
   @Input() glebeId = '';
   @Output() productionEvent = new EventEmitter<any>();
 
@@ -23,6 +24,12 @@ export class AddUpdateProductionComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  // getProductionById(productionId: string){
+  //   this.productionService.getProductionById(productionId).subscribe({
+  //     next: (response: Production)
+  //   })
+  // }
+
   onAddProduction(addProductionForm: NgForm){
     document.getElementById("close-add-production-btn")?.click();
     this.productionService.addProduction(this.glebeId, addProductionForm.value).subscribe(
@@ -31,6 +38,20 @@ export class AddUpdateProductionComponent implements OnInit {
         this.productionEvent.emit();
       }
     )
+  }
+
+  onUpdateProduction(editProductionForm: NgForm){
+    editProductionForm.value['id'] = this.productionId;
+    this.productionService.updateProduction(this.glebeId, this.productionId, editProductionForm.value)
+    .subscribe({
+      next: (response: Production) => {
+        this.production = response,
+        this.productionEvent.emit();
+        editProductionForm.reset();
+        document.getElementById("close-edit-btn")?.click();
+      },
+      error: (error: HttpErrorResponse) => alert(error.message)
+    })
   }
 
 }

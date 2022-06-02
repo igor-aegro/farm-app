@@ -1,25 +1,3 @@
-<!-- Edit Production modal -->
-<div class="modal fade" id="editProductionModal" tabindex="-1" aria-labelledby="editProductionModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editProductionModalLabel">Editar dados da área</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <input type="text" class="input-style" name="production" id="production" ngModel
-        placeholder="*Tamanho(ha)" required #production="ngModel">
-        <div>
-          <span class="help-block" style="margin: 3px;" *ngIf="!production.valid && production.touched">Por favor, insira uma produção válida!</span>
-        </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn cancel-btn" data-bs-dismiss="modal">Cancelar</button>
-        <button type="button" class="btn confirm-btn">Salvar</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- Delete Production modal -->
 <div class="modal fade" id="deleteProductionModal" tabindex="-1" aria-labelledby="deleteProductionModalLabel" aria-hidden="true">
@@ -33,8 +11,8 @@
         <p>Isso irá apagar essa produção. Tem certeza que quer concluir essa operação?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn cancel-btn" data-bs-dismiss="modal">Não</button>
-        <button type="button" class="btn confirm-btn">Sim</button>
+        <button type="button" class="btn cancel-btn" data-bs-dismiss="modal" id="close-delete-btn">Não</button>
+        <button type="submit" class="btn confirm-btn" (click)="onDeleteProduction(productionId)">Sim</button>
       </div>
     </div>
   </div>

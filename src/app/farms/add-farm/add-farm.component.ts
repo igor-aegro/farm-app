@@ -56,7 +56,6 @@ export class AddFarmComponent implements OnInit {
   }
 
   onUpdateFarm(editForm: NgForm): void {
-    document.getElementById("close-edit-farm-btn")?.click();
     this.getFarmById(this.farmIdEdit);
     setTimeout(() => {
       console.log("Farm to edit:", this.farm);
@@ -68,7 +67,8 @@ export class AddFarmComponent implements OnInit {
         next: (response: Farm) => this.farmEvent.emit(),
         error: (error: HttpErrorResponse) => alert(error.message)
       })
-    }, 1000);
+    }, 200);
+    document.getElementById("close-edit-farm-btn")?.click();
   }
 
 }
