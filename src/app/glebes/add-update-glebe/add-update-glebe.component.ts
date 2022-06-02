@@ -40,6 +40,7 @@ export class AddUpdateGlebeComponent implements OnInit {
 
   onAddGlebe(addGlebeForm: NgForm): void {
     document.getElementById("add-glebe-btn")?.click();
+    addGlebeForm.value['productions'] = [];
     addGlebeForm.value['productivity'] = 0;
     this.glebeService.addGlebe(this.farmId, addGlebeForm.value).subscribe(
       (response: Glebe) => {

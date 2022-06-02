@@ -34,7 +34,11 @@ export class AddFarmComponent implements OnInit {
 
   public getFarmById(id: string) {
     this.farmService.getFarmById(id).subscribe({
-      next: (response: Farm) => this.farm = response,
+      next: (response: Farm) => {
+        this.farm = response;
+        console.log("Edit response farm", response),
+        console.log("Edit farm", this.farm)
+      },
       error: (error: HttpErrorResponse) => alert(error.message)
     })
   }
@@ -54,14 +58,17 @@ export class AddFarmComponent implements OnInit {
   onUpdateFarm(editForm: NgForm): void {
     document.getElementById("close-edit-farm-btn")?.click();
     this.getFarmById(this.farmIdEdit);
-    editForm.value['id'] = this.farmIdEdit;
-    editForm.value['glebes'] = this.farm.glebes;
-    editForm.value['productivity'] = this.farm.productivity;
-    console.log("form:", editForm.value);
-    this.farmService.updateFarm(editForm.value).subscribe({
-      next: (response: Farm) => this.farmEvent.emit(),
-      error: (error: HttpErrorResponse) => alert(error.message)
-    })
+    setTimeout(() => {
+      console.log("Farm to edit:", this.farm);
+      editForm.value['id'] = this.farmIdEdit;
+      editForm.value['glebes'] = this.farm.glebes;
+      editForm.value['productivity'] = this.farm.productivity;
+      console.log("form:", editForm.value);
+      this.farmService.updateFarm(editForm.value).subscribe({
+        next: (response: Farm) => this.farmEvent.emit(),
+        error: (error: HttpErrorResponse) => alert(error.message)
+      })
+    }, 1000);
   }
 
 }
