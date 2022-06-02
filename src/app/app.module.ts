@@ -18,12 +18,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddFarmComponent } from './farms/add-farm/add-farm.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddUpdateGlebeComponent } from './glebes/add-update-glebe/add-update-glebe.component';
+import { AddUpdateProductionComponent } from './productions/add-update-production/add-update-production.component';
 
 const appRoutes: Routes = [
   { path: '', component: FarmListComponent },
   { path: ':id/glebes', component: GlebeListComponent },
   // { path: 'glebes/:id/:name', component: GlebesComponent },
-  { path: 'productions', component: ProductionListComponent }, 
+  { path: ':id/productions', component: ProductionListComponent }, 
 ];
 
 @NgModule({
@@ -40,7 +41,8 @@ const appRoutes: Routes = [
     GlebeDialogsComponent,
     ProductionDialogsComponent,
     AddFarmComponent,
-    AddUpdateGlebeComponent
+    AddUpdateGlebeComponent,
+    AddUpdateProductionComponent
   ],
   imports: [
     BrowserModule,
