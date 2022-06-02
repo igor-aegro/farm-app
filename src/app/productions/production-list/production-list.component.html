@@ -1,1 +1,54 @@
-<p>production-list works!</p>
+<nav class="navbar navbar-expand-lg navbar-light" style="margin: 20px 20px;">
+    <div class="col-1">
+        <a href="#" class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="List"
+        data-bs-toggle="modal" data-bs-target="#listGlebeModal" routerLink="/glebes"><i class="fa fa-arrow-left"></i> </a>
+    </div>
+    <div class="col-6 mb-0 header-title">
+        <strong> Área AAAAAAAAAAA </strong>
+    </div>
+    <div class="col-4">
+        <h6>Produtividade</h6>
+        <h6>400 kg/ha</h6>
+    </div>
+    <div class="col-1 btn-group btn-sm" role="group">
+        
+        <a href="#" class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="Edit"
+        data-bs-toggle="modal" data-bs-target="#editProductionModal"><i class="fa fa-pencil"></i> </a>
+    </div>
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="col-9">
+        <strong>Produções</strong>
+    </div>
+    <button type="button" class="btn confirm-btn" style="width: 20%" data-bs-toggle="modal" data-bs-target="#addProductionModal">
+        + Nova produção
+    </button>
+</nav>
+
+<hr>
+
+<ul class="list-group">
+<li class="list-group-item">
+    <div class="col-xl-12">
+        <div class="row align-items-center d-flex">
+            <div class="col-2">
+                <i class="fas fa-warehouse"></i>
+            </div>
+            <div class="col-8 mb-0">
+                <h5>300 kg</h5>
+                <h6>Produzidos</h6>
+            </div>
+            <div class="col-2 btn-group btn-sm" role="group">
+                
+                <a href="#" class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="Edit"
+                data-bs-toggle="modal" data-bs-target="#editProductionModal"><i class="fa fa-pencil"></i> </a>
+                
+                <a href="#" class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="Delete" 
+                data-bs-toggle="modal" data-bs-target="#deleteProductionModal"><i class="fa fa-times"></i></a>
+            
+            </div>
+        </div>
+    </div>
+</li>
+</ul>

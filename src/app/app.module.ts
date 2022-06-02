@@ -12,6 +12,19 @@ import { FarmsComponent } from './farms/farms.component';
 import { FarmListComponent } from './farms/farm-list/farm-list.component';
 import { FormsModule } from '@angular/forms';
 import { FarmDialogsComponent } from './farms/farm-dialogs/farm-dialogs.component';
+import { GlebeDialogsComponent } from './glebes/glebe-dialogs/glebe-dialogs.component';
+import { ProductionDialogsComponent } from './productions/production-dialogs/production-dialogs.component';
+import { RouterModule, Routes } from '@angular/router';
+import { AddFarmComponent } from './farms/add-farm/add-farm.component';
+import { EditFarmComponent } from './farms/edit-farm/edit-farm.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+const appRoutes: Routes = [
+  { path: '', component: FarmListComponent },
+  { path: 'glebes', component: GlebeListComponent },
+  { path: 'glebes/:id/:name', component: GlebesComponent },
+  { path: 'productions', component: ProductionListComponent }, 
+];
 
 @NgModule({
   declarations: [
@@ -23,12 +36,18 @@ import { FarmDialogsComponent } from './farms/farm-dialogs/farm-dialogs.componen
     ProductionListComponent,
     FarmsComponent,
     FarmListComponent,
-    FarmDialogsComponent
+    FarmDialogsComponent,
+    GlebeDialogsComponent,
+    ProductionDialogsComponent,
+    AddFarmComponent,
+    EditFarmComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(appRoutes),
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

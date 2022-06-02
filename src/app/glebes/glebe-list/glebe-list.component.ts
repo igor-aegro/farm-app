@@ -6,6 +6,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./glebe-list.component.css']
 })
 export class GlebeListComponent implements OnInit {
+  glebes = [
+    {
+      id: 1,
+      name: 'glebeA',
+      area: 0
+    },
+    {
+      id: 2,
+      name: 'glebeB',
+      area: 0
+    },
+    {
+      id: 3,
+      name: 'glebeC',
+      area: 0
+    }
+  ];
 
   constructor() { }
 

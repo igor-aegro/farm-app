@@ -1,1 +1,59 @@
-<p>glebe-list works!</p>
+<nav class="navbar navbar-expand-lg navbar-light" style="margin: 20px 20px;">
+    <div class="col-1">
+        <a href="#" class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="List"
+        data-bs-toggle="modal" data-bs-target="#listFarmModal" routerLink="/farms"><i class="fa fa-arrow-left"></i> </a>
+    </div>
+    <div class="col-6 mb-0 header-title">
+        <strong> Fazenda AAAAAAAAAAA </strong>
+    </div>
+    <div class="col-4">
+        <h6>Produtividade</h6>
+        <h6>200 kg/ha</h6>
+    </div>
+    <div class="col-1 btn-group btn-sm" role="group">
+        
+        <a href="#" class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="Edit"
+        data-bs-toggle="modal" data-bs-target="#editGlebeModal"><i class="fa fa-pencil"></i> </a>
+    </div>
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="col-9">
+        <strong>Áreas da Fazenda</strong>
+    </div>
+    <button type="button" class="btn confirm-btn" style="width: 20%" data-bs-toggle="modal" data-bs-target="#addGlebeModal">
+        + Nova área
+    </button>
+</nav>
+
+<hr>
+
+<ul class="list-group">
+    <div *ngFor="let glebe of glebes" class="container">
+        <li class="list-group-item">
+            <div class="col-xl-12">
+                <div class="row align-items-center d-flex">
+                    <div class="col-2">
+                        <i class="far fa-map"></i>
+                    </div>
+                    <div class="col-8 mb-0">
+                        <h5>{{ glebe.name }}</h5>
+                        <h6>{{ glebe.area }}</h6>
+                    </div>
+                    <div class="col-2 btn-group btn-sm" role="group">
+                        
+                        <a href="#" class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="Edit"
+                        data-bs-toggle="modal" data-bs-target="#editGlebeModal"><i class="fa fa-pencil"></i> </a>
+                        
+                        <a href="#" class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="Delete" 
+                        data-bs-toggle="modal" data-bs-target="#deleteGlebeModal"><i class="fa fa-times"></i></a>
+                        
+                        <a href="#" class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="List"
+                        data-bs-toggle="modal" data-bs-target="#listGlebeModal" routerLink="/productions"><i class="fa fa-arrow-right"></i> </a>
+                    
+                    </div>
+                </div>
+            </div>
+        </li>
+    </div>
+</ul>
