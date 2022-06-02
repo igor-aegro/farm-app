@@ -1,1 +1,42 @@
-/* You can add global styles to this file, and also import other style files */
+@import 'https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css';
+@import 'https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css';
+
+* {
+    font-family: 'Cabin', sans-serif;
+}
+
+body{
+    margin-top:20px;
+    background: #f5f5f5;
+}
+.card {
+    border: none;
+    -webkit-box-shadow: 0 1px 2px 0 rgba(0,0,0,.05);
+    box-shadow: 0 0px 0px 0 rgba(0,0,0,.05);
+    margin: 0px;
+    height: 70px;
+}
+h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 10px;
+    font-weight: 600;
+}
+a {
+    color: #707070;
+}
+.standard-button {
+    margin: 5px;
+}
+
+.confirm-btn {
+    background-color: #00c65e;
+    border: none;
+    border-radius: 0px;
+}
+.confirm-btn:hover {
+    box-shadow: 2px 2px 2px #707070;
+}
+
+.cancel-btn {
+    border: none;
+    border-radius: 0px;
+}

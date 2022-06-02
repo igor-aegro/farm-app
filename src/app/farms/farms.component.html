@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-light">
+            <div class="col-9">
+                <strong>Fazendas</strong>
+            </div>
+            <button type="button" class="btn confirm-btn" style="width: 20%" data-bs-toggle="modal" data-bs-target="#addFarmModal">
+                + Nova fazenda
+            </button>
+</nav>
+
+<hr>
+
+<ul class="list-group">
+<div *ngFor="let eachFarm of farm" class="container">
+        <li class="list-group-item">
+            <div class="col-xl-12">
+                <div class="row align-items-center d-flex">
+                    <div class="col-2">
+                        <i class="fa fa-home"></i>
+                    </div>
+                    <div class="col-7 mb-0">
+                        <h5>Fazenda {{eachFarm?.name}}</h5>
+                    </div>
+                    <div class="col-3 btn-group btn-sm" role="group">
+                        
+                        <a href="#" class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="Edit"
+                        data-bs-toggle="modal" data-bs-target="#editFarmModal"><i class="fa fa-pencil"></i> </a>
+                        
+                        <a href="#" class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="Delete" 
+                        data-bs-toggle="modal" data-bs-target="#deleteFarmModal"><i class="fa fa-times"></i></a>
+                        
+                        <a href="#" class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="List"
+                        data-bs-toggle="modal" data-bs-target="#listFarmModal"><i class="fa fa-arrow-right"></i> </a>
+                    
+                    </div>
+                </div>
+            </div>
+        </li>
+    </div>
+</ul>
