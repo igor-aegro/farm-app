@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Farm } from 'src/app/models/farm.model';
 import { Glebe } from 'src/app/models/glebe.model';
@@ -27,7 +27,7 @@ export class GlebeListComponent implements OnInit {
               private router: Router) { }
 
   ngOnInit(): void {
-    this.farm.id = this.route.snapshot.params['id'];
+    this.farm.id = this.route.snapshot.params['farmId'];
     this.getGlebesFromFarm();
   }
 

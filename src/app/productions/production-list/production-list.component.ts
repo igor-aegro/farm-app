@@ -18,13 +18,16 @@ export class ProductionListComponent implements OnInit {
     productions: [],
     productivity: 0
   }
+  farmId = '';
+  productionIdEdit = '';
 
   constructor(private glebeService: GlebeService,
               private productionService: ProductionService,
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.glebe.id = this.route.snapshot.params['id'];
+    this.glebe.id = this.route.snapshot.params['glebeId'];
+    this.farmId = this.route.snapshot.params['farmId'];
     this.getProductionsFromGlebe(this.glebe.id);
   }
 
@@ -33,6 +36,11 @@ export class ProductionListComponent implements OnInit {
       next: (response: Glebe) => this.glebe = response,
       error: (error: HttpErrorResponse) => alert(error.message)
     })
+  }
+
+  setProductionIdEdit(id: string){
+    this.productionIdEdit = id;
+    console.log(id);
   }
 
 }
