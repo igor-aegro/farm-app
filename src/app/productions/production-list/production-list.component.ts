@@ -20,6 +20,7 @@ export class ProductionListComponent implements OnInit {
   }
   farmId = '';
   productionIdEdit = '';
+  productionIdDeletion = '';
 
   constructor(private glebeService: GlebeService,
               private productionService: ProductionService,
@@ -40,6 +41,11 @@ export class ProductionListComponent implements OnInit {
 
   setProductionIdEdit(id: string){
     this.productionIdEdit = id;
+    console.log(id);
+  }
+
+  setProductionIdDeletion(id: string){
+    this.productionIdDeletion = id;
     console.log(id);
   }
 

@@ -11,8 +11,8 @@
         <p>Isso irá apagar essa produção. Tem certeza que quer concluir essa operação?</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn cancel-btn" data-bs-dismiss="modal">Não</button>
-        <button type="button" class="btn confirm-btn">Sim</button>
+        <button type="button" class="btn cancel-btn" data-bs-dismiss="modal" id="close-delete-btn">Não</button>
+        <button type="submit" class="btn confirm-btn" (click)="onDeleteProduction(productionId)">Sim</button>
       </div>
     </div>
   </div>

@@ -45,7 +45,7 @@
                 data-bs-toggle="modal" data-bs-target="#editProductionModal" (click)="setProductionIdEdit(production.id)"><i class="fa fa-pencil"></i> </a>
                 
                 <a href="#" class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="Delete" 
-                data-bs-toggle="modal" data-bs-target="#deleteProductionModal"><i class="fa fa-times"></i></a>
+                data-bs-toggle="modal" data-bs-target="#deleteProductionModal" (click)="setProductionIdDeletion(production.id)"><i class="fa fa-times"></i></a>
             
             </div>
         </div>
@@ -55,3 +55,4 @@
 </ul>
 
 <app-add-update-production [glebeId]="glebe.id" [productionId]="productionIdEdit" (productionEvent)="getProductionsFromGlebe(glebe.id)"></app-add-update-production>
+<app-production-dialogs [productionId]="productionIdDeletion" (productionDeletedEvent)="getProductionsFromGlebe(glebe.id)"></app-production-dialogs>
