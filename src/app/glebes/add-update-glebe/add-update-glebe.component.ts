@@ -39,19 +39,18 @@ export class AddUpdateGlebeComponent implements OnInit {
   }
 
   onAddGlebe(addGlebeForm: NgForm): void {
-    document.getElementById("add-glebe-btn")?.click();
     addGlebeForm.value['productions'] = [];
     addGlebeForm.value['productivity'] = 0;
     this.glebeService.addGlebe(this.farmId, addGlebeForm.value).subscribe(
       (response: Glebe) => {
         console.log(addGlebeForm.value);
         this.glebeEvent.emit();
+        document.getElementById("add-glebe-btn")?.click();
       }
     )
   }
 
   onUpdateGlebe(editGlebeForm: NgForm){
-    document.getElementById("close-edit-glebe-btn")?.click();
     console.log("glebeIdEdit", this.glebeIdEdit);
     this.getGlebeById(this.glebeIdEdit);
     editGlebeForm.value['id'] = this.glebe.id;
@@ -59,7 +58,10 @@ export class AddUpdateGlebeComponent implements OnInit {
     editGlebeForm.value['productions'] = this.glebe.productions;
     console.log("form:", editGlebeForm.value);
     this.glebeService.updateGlebe(this.farmId, this.glebeIdEdit, editGlebeForm.value).subscribe({
-      next: (response: Glebe) => this.glebeEvent.emit(),
+      next: (response: Glebe) => {
+        this.glebeEvent.emit(),
+        document.getElementById("close-edit-glebe-btn")?.click()
+      },
       error: (error: HttpErrorResponse) => alert(error.message)
     })
   }

@@ -24,18 +24,12 @@ export class AddUpdateProductionComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // getProductionById(productionId: string){
-  //   this.productionService.getProductionById(productionId).subscribe({
-  //     next: (response: Production)
-  //   })
-  // }
-
   onAddProduction(addProductionForm: NgForm){
-    document.getElementById("close-add-production-btn")?.click();
     this.productionService.addProduction(this.glebeId, addProductionForm.value).subscribe(
       (response: Production) => {
         console.log(addProductionForm.value);
         this.productionEvent.emit();
+        document.getElementById("close-add-production-btn")?.click();
       }
     )
   }
