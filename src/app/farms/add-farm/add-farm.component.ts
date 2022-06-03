@@ -50,6 +50,7 @@ export class AddFarmComponent implements OnInit {
       (response: Farm) => {
         console.log(addForm.value);
         this.farmEvent.emit();
+        addForm.reset();
         document.getElementById("add-farm-btn")?.click();
       }
     )
@@ -66,6 +67,7 @@ export class AddFarmComponent implements OnInit {
       this.farmService.updateFarm(editForm.value).subscribe({
         next: (response: Farm) => {
           this.farmEvent.emit(),
+          editForm.reset(),
           document.getElementById("close-edit-farm-btn")?.click()
         },
         error: (error: HttpErrorResponse) => alert(error.message)

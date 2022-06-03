@@ -45,6 +45,7 @@ export class AddUpdateGlebeComponent implements OnInit {
       (response: Glebe) => {
         console.log(addGlebeForm.value);
         this.glebeEvent.emit();
+        addGlebeForm.reset();
         document.getElementById("add-glebe-btn")?.click();
       }
     )
@@ -60,6 +61,7 @@ export class AddUpdateGlebeComponent implements OnInit {
     this.glebeService.updateGlebe(this.farmId, this.glebeIdEdit, editGlebeForm.value).subscribe({
       next: (response: Glebe) => {
         this.glebeEvent.emit(),
+        editGlebeForm.reset();
         document.getElementById("close-edit-glebe-btn")?.click()
       },
       error: (error: HttpErrorResponse) => alert(error.message)

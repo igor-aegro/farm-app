@@ -29,6 +29,7 @@ export class AddUpdateProductionComponent implements OnInit {
       (response: Production) => {
         console.log(addProductionForm.value);
         this.productionEvent.emit();
+        addProductionForm.reset();
         document.getElementById("close-add-production-btn")?.click();
       }
     )
