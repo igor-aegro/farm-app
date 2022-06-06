@@ -31,19 +31,11 @@ export class AddUpdateGlebeComponent implements OnInit {
     console.log(form);
   }
 
-  getGlebeById(id: string){
-    this.glebeService.getGlebeById(id).subscribe({
-      next: (response: Glebe) => this.glebe = response,
-      error: (error: HttpErrorResponse) => alert(error.message)
-    })
-  }
-
   onAddGlebe(addGlebeForm: NgForm): void {
     addGlebeForm.value['productions'] = [];
     addGlebeForm.value['productivity'] = 0;
     this.glebeService.addGlebe(this.farmId, addGlebeForm.value).subscribe(
       (response: Glebe) => {
-        console.log(addGlebeForm.value);
         this.glebeEvent.emit();
         addGlebeForm.reset();
         document.getElementById("add-glebe-btn")?.click();
@@ -52,20 +44,32 @@ export class AddUpdateGlebeComponent implements OnInit {
   }
 
   onUpdateGlebe(editGlebeForm: NgForm){
-    console.log("glebeIdEdit", this.glebeIdEdit);
-    this.getGlebeById(this.glebeIdEdit);
-    editGlebeForm.value['id'] = this.glebe.id;
-    editGlebeForm.value['productivity'] = this.glebe.productivity;
-    editGlebeForm.value['productions'] = this.glebe.productions;
-    console.log("form:", editGlebeForm.value);
-    this.glebeService.updateGlebe(this.farmId, this.glebeIdEdit, editGlebeForm.value).subscribe({
-      next: (response: Glebe) => {
-        this.glebeEvent.emit(),
-        editGlebeForm.reset();
-        document.getElementById("close-edit-glebe-btn")?.click()
-      },
-      error: (error: HttpErrorResponse) => alert(error.message)
+    const promise = new Promise<void>((resolve, reject) => {
+      this.glebeService.getGlebeById(this.glebeIdEdit).subscribe({
+        next: (response: Glebe) => {
+          this.glebe = response,
+          resolve()
+        },
+        error: (error: HttpErrorResponse) => reject(error.message)
+      })
     })
+
+    promise.then(() => {
+      
+      editGlebeForm.value['id'] = this.glebe.id;
+      editGlebeForm.value['productivity'] = this.glebe.productivity;
+      editGlebeForm.value['productions'] = this.glebe.productions;
+      
+      this.glebeService.updateGlebe(this.farmId, this.glebeIdEdit, editGlebeForm.value).subscribe({
+        next: (response: Glebe) => {
+          this.glebeEvent.emit(),
+          editGlebeForm.reset(),
+          document.getElementById("close-edit-glebe-btn")?.click()
+        },
+        error: (error: HttpErrorResponse) => alert(error.message)
+      })
+    })
+
   }
 
 }
