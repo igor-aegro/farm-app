@@ -12,8 +12,8 @@ import { FarmService } from 'src/app/services/farm.service';
 })
 export class AddFarmComponent implements OnInit {
   @Input() farmIdEdit = '';
-  @Output() farmEvent = new EventEmitter<any>();
-  @Output() farmEditEvent = new EventEmitter<any>();
+  @Output() farmEvent = new EventEmitter<void>();
+  @Output() farmEditEvent = new EventEmitter<void>();
 
   farm: Farm = {
     id:'',

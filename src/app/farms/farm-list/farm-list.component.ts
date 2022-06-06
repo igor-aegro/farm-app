@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Injectable, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Injectable, OnInit, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -34,6 +34,14 @@ export class FarmListComponent implements OnInit {
   public setFarmId(farmId: string){
     this.currentFarmIdEdit = farmId;
     console.log("idFarm", this.currentFarmIdEdit);
+  }
+
+  public loadFarmData(farmId: string){
+    this.currentFarmIdEdit = farmId;
+    this.farmService.updateProductivity(farmId).subscribe({
+      next: response => console.log("Farm productivity loaded!"),
+      error: (error: HttpErrorResponse) => alert(error.message)
+    })
   }
 
   public setFarmIdDeletion(currentFarmId: string){

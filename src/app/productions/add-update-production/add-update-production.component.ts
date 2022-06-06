@@ -12,7 +12,7 @@ import { ProductionService } from 'src/app/services/production.service';
 export class AddUpdateProductionComponent implements OnInit {
   @Input() productionId = '';
   @Input() glebeId = '';
-  @Output() productionEvent = new EventEmitter<any>();
+  @Output() productionEvent = new EventEmitter<void>();
 
   production: Production = {
     id: '',

@@ -32,4 +32,8 @@ export class FarmService {
         return this.http.delete<void>(`${this.apiServerUrl}/api/v1/farms/${farmId}`);   
     }
 
+    public updateProductivity(farmId: string): Observable<void>{
+        return this.http.put<void>(`${this.apiServerUrl}/api/v1/farms/${farmId}/productivity`, null);
+    }
+
 }

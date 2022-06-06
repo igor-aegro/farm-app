@@ -11,7 +11,7 @@ import { FarmService } from 'src/app/services/farm.service';
 })
 export class FarmDialogsComponent implements OnInit {
   @Input() farmId = '';
-  @Output() farmDeletedEvent = new EventEmitter<any>();
+  @Output() farmDeletedEvent = new EventEmitter<void>();
 
   constructor(private farmService: FarmService){}
 

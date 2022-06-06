@@ -11,7 +11,7 @@ import { GlebeService } from 'src/app/services/glebe.service';
 })
 export class AddUpdateGlebeComponent implements OnInit {
   @Input() farmId = '';
-  @Output() glebeEvent = new EventEmitter<any>();
+  @Output() glebeEvent = new EventEmitter<void>();
   @Input() glebeIdEdit = '';
 
   glebe: Glebe = {
