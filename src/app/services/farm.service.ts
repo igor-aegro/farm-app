@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { environment } from "src/environments/environment";
@@ -13,7 +13,7 @@ export class FarmService {
     constructor(private http: HttpClient) { }
     
     public getFarms(): Observable<Farm[]> {
-        return this.http.get<Farm[]>(`${this.apiServerUrl}/api/v1/farms`);    
+        return this.http.get<Farm[]>(`${this.apiServerUrl}/api/v1/farms`); 
     }
 
     public getFarmById(id: string): Observable<Farm> {

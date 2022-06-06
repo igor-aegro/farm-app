@@ -18,9 +18,11 @@ export class GlebeDialogsComponent implements OnInit {
   }
 
   onDeleteGlebe(farmId: string, glebeId: string){
-    document.getElementById("close-delete-glebe-btn")?.click();
     this.glebeService.deleteGlebe(farmId, glebeId).subscribe({
-      next: response => this.glebeDeletedEvent.emit(),
+      next: response => {
+        this.glebeDeletedEvent.emit(),
+        document.getElementById("close-delete-glebe-btn")?.click()
+      },
       error: (error: HttpErrorResponse) => alert(error.message)
     })
   }

@@ -32,43 +32,49 @@ export class AddFarmComponent implements OnInit {
     console.log(form);
   }
 
-  public getFarmById(id: string) {
-    this.farmService.getFarmById(id).subscribe({
-      next: (response: Farm) => {
-        this.farm = response;
-        console.log("Edit response farm", response),
-        console.log("Edit farm", this.farm)
-      },
-      error: (error: HttpErrorResponse) => alert(error.message)
-    })
-  }
-
   onAddFarm(addForm: NgForm): void {
-    document.getElementById("add-farm-btn")?.click();
     addForm.value['glebes'] = [];
     addForm.value['productivity'] = 0;
     this.farmService.addFarm(addForm.value).subscribe(
       (response: Farm) => {
         console.log(addForm.value);
         this.farmEvent.emit();
+        addForm.reset();
+        document.getElementById("add-farm-btn")?.click();
       }
     )
   }
 
   onUpdateFarm(editForm: NgForm): void {
-    this.getFarmById(this.farmIdEdit);
-    setTimeout(() => {
-      console.log("Farm to edit:", this.farm);
+    const promise = new Promise<void>((resolve, reject) => {
+
+      this.farmService.getFarmById(this.farmIdEdit).subscribe({
+        next: (response: Farm) => {
+          this.farm = response,
+          resolve()
+        },
+        error: (error: HttpErrorResponse) => reject(error.message)
+      })
+
+    });
+    
+    promise.then(() => {
+      
       editForm.value['id'] = this.farmIdEdit;
       editForm.value['glebes'] = this.farm.glebes;
       editForm.value['productivity'] = this.farm.productivity;
-      console.log("form:", editForm.value);
+      
       this.farmService.updateFarm(editForm.value).subscribe({
-        next: (response: Farm) => this.farmEvent.emit(),
+        next: (response: Farm) => {
+          console.log("edit form after farm search", editForm);
+          this.farmEvent.emit(),
+          editForm.reset(),
+          document.getElementById("close-edit-farm-btn")?.click()
+        },
         error: (error: HttpErrorResponse) => alert(error.message)
       })
-    }, 200);
-    document.getElementById("close-edit-farm-btn")?.click();
+      
+    })
   }
 
 }
