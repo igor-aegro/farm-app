@@ -10,7 +10,7 @@ import { GlebeService } from 'src/app/services/glebe.service';
 export class GlebeDialogsComponent implements OnInit {
   @Input() farmId = '';
   @Input() glebeId = '';
-  @Output() glebeDeletedEvent = new EventEmitter<any>();
+  @Output() glebeDeletedEvent = new EventEmitter<void>();
 
   constructor(private glebeService: GlebeService) { }
 

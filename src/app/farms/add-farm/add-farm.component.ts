@@ -12,8 +12,8 @@ import { FarmService } from 'src/app/services/farm.service';
 })
 export class AddFarmComponent implements OnInit {
   @Input() farmIdEdit = '';
-  @Output() farmEvent = new EventEmitter<any>();
-  @Output() farmEditEvent = new EventEmitter<any>();
+  @Output() farmEvent = new EventEmitter<void>();
+  @Output() farmEditEvent = new EventEmitter<void>();
 
   farm: Farm = {
     id:'',
@@ -66,7 +66,6 @@ export class AddFarmComponent implements OnInit {
       
       this.farmService.updateFarm(editForm.value).subscribe({
         next: (response: Farm) => {
-          console.log("edit form after farm search", editForm);
           this.farmEvent.emit(),
           editForm.reset(),
           document.getElementById("close-edit-farm-btn")?.click()

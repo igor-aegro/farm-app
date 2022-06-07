@@ -2,7 +2,6 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Farm } from 'src/app/models/farm.model';
-import { Glebe } from 'src/app/models/glebe.model';
 import { FarmService } from 'src/app/services/farm.service';
 import { GlebeService } from 'src/app/services/glebe.service';
 
@@ -40,17 +39,14 @@ export class GlebeListComponent implements OnInit {
 
   public getGlebesFromFarm() {
     this.getFarmById();
-    console.log(this.farm);
   }
 
   public setGlebeId(glebeId: string){
     this.currentGlebeIdEdit = glebeId;
-    console.log("idGlebe", this.currentGlebeIdEdit);
   }
 
   public setGlebeIdDeletion(glebeId: string){
     this.currentGlebeId = glebeId;
-    console.log("idGlebe", this.currentGlebeId);
   }
 
 }

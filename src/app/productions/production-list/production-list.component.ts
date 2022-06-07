@@ -41,12 +41,10 @@ export class ProductionListComponent implements OnInit {
 
   setProductionIdEdit(id: string){
     this.productionIdEdit = id;
-    console.log(id);
   }
 
   setProductionIdDeletion(id: string){
     this.productionIdDeletion = id;
-    console.log(id);
   }
 
 }

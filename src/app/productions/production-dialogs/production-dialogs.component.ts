@@ -1,7 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Production } from 'src/app/models/production.model';
 import { ProductionService } from 'src/app/services/production.service';
 
 @Component({
@@ -12,7 +11,7 @@ import { ProductionService } from 'src/app/services/production.service';
 export class ProductionDialogsComponent implements OnInit {
   glebeId = '';
   @Input() productionId = '';
-  @Output() productionDeletedEvent = new EventEmitter<any>();
+  @Output() productionDeletedEvent = new EventEmitter<void>();
 
   constructor(private productionService: ProductionService,
     private route: ActivatedRoute) { }
