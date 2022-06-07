@@ -36,7 +36,7 @@ export class FarmListComponent implements OnInit {
   public loadFarmData(farmId: string){
     this.currentFarmIdEdit = farmId;
     this.farmService.updateProductivity(farmId).subscribe({
-      next: response => console.log("Farm productivity loaded!"),
+      next: () => console.log("Farm productivity loaded!"),
       error: (error: HttpErrorResponse) => alert(error.message)
     })
   }
