@@ -11,8 +11,7 @@
     </div>
     <div class="col-1 btn-group btn-sm" role="group">
         
-        <a class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="Edit"
-        data-bs-toggle="modal" data-bs-target="#editProductionModal"><i class="fa fa-pencil"></i> </a>
+        <a class="btn tooltips" data-placement="right"><i class="fa fa-pencil"></i> </a>
     </div>
 </nav>
 
@@ -32,14 +31,14 @@
 <li class="list-group-item">
     <div class="col-xl-12">
         <div class="row align-items-center d-flex">
-            <div class="col-2">
+            <div class="col-1">
                 <i class="fas fa-warehouse"></i>
             </div>
-            <div class="col-8 mb-0">
+            <div class="col-10 mb-0">
                 <h5>{{ production.production }} kg</h5>
                 <h6>Produzidos</h6>
             </div>
-            <div class="col-2 btn-group btn-sm" role="group">
+            <div class="col-1 btn-group btn-sm" role="group">
                 
                 <a class="btn tooltips" data-placement="right" data-toggle="tooltip" data-original-title="Edit"
                 data-bs-toggle="modal" data-bs-target="#editProductionModal" (click)="setProductionIdEdit(production.id)"><i class="fa fa-pencil"></i> </a>
