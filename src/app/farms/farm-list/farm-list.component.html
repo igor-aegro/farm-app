@@ -22,17 +22,17 @@
                 </div>
                 <div class="col-2 btn-group btn-sm" role="group">
                 
-                    <a href="#" class="btn tooltips" data-bs-toggle="modal" 
+                    <a class="btn tooltips" data-bs-toggle="modal" 
                     data-bs-target="#editFarmModal" (click)="setFarmId(farm.id)">
                         <i class="fa fa-pencil"></i>
                     </a>
 
-                    <a href="#" class="btn tooltips"
+                    <a class="btn tooltips"
                     data-bs-toggle="modal" data-bs-target="#deleteFarmModal" (click)="setFarmIdDeletion(farm.id)">
                         <i class="fa fa-times"></i>
                     </a>
                     
-                    <a href="#" class="btn tooltips"
+                    <a class="btn tooltips"
                     (click)="loadFarmData(farm.id)" routerLink= "{{farm.id}}/glebes"><i class="fa fa-arrow-right"></i> </a>
                 
                 </div>
@@ -42,5 +42,5 @@
     </div>
 </ul>
 
-<app-add-farm [farmIdEdit]="currentFarmIdEdit" (farmEvent)="updateFarmList()"></app-add-farm>
-<app-farm-dialogs [farmId]="currentFarmId" (farmDeletedEvent)="updateFarmList()"></app-farm-dialogs>
+<app-add-farm [farmIdEdit]="currentFarmIdEdit" (farmEvent)="getFarms()"></app-add-farm>
+<app-farm-dialogs [farmId]="currentFarmId" (farmDeletedEvent)="getFarms()"></app-farm-dialogs>

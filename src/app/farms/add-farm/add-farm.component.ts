@@ -66,7 +66,6 @@ export class AddFarmComponent implements OnInit {
       
       this.farmService.updateFarm(editForm.value).subscribe({
         next: (response: Farm) => {
-          console.log("edit form after farm search", editForm);
           this.farmEvent.emit(),
           editForm.reset(),
           document.getElementById("close-edit-farm-btn")?.click()

@@ -1,7 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Production } from 'src/app/models/production.model';
 import { ProductionService } from 'src/app/services/production.service';
 
 @Component({
